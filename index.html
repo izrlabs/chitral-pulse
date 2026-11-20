@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Chitral Pulse: news, viral posts and travel guides from Chitral, Pakistan. Every story credits its source.">
+<title>Chitral Pulse</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: sticky masthead, mountain hero, then News grid / Viral feed / Travel guides, with partner slots between sections */
+:root{
+  --bg:#f3f5f6; --surface:#ffffff; --ink:#15232e; --muted:#5a6a75; --line:#dbe2e6;
+  --glacier:#1f4e6b; --glacier-soft:#e2edf3; --apricot:#e07a2e; --apricot-soft:#fbeadb;
+  --kalash-1:#c2273b; --kalash-2:#f1b52b; --kalash-3:#2c8a5a; --kalash-4:#2b5ea8;
+  --hero-sky:#cfe3ee; --hero-far:#9fbfd2; --hero-near:#3b6480; --snow:#ffffff;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171d; --surface:#17222b; --ink:#e6edf1; --muted:#97a8b3; --line:#2a3a46;
+  --glacier:#8cc3e3; --glacier-soft:#1c3242; --apricot:#f29a55; --apricot-soft:#3a2617;
+  --hero-sky:#132532; --hero-far:#24435a; --hero-near:#335a75; --snow:#dfeaf1; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171d; --surface:#17222b; --ink:#e6edf1; --muted:#97a8b3; --line:#2a3a46;
+  --glacier:#8cc3e3; --glacier-soft:#1c3242; --apricot:#f29a55; --apricot-soft:#3a2617;
+  --hero-sky:#132532; --hero-far:#24435a; --hero-near:#335a75; --snow:#dfeaf1; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:var(--glacier)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--apricot);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Kalash embroidery band */
+.band{height:8px;background:repeating-linear-gradient(90deg,var(--kalash-1) 0 22px,var(--kalash-2) 22px 34px,var(--kalash-3) 34px 52px,var(--kalash-4) 52px 64px)}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.topline{background:var(--surface);border-bottom:1px solid var(--line)}
+.topline .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);line-height:1}
+.logo b{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.02em}
+.logo b span{color:var(--apricot)}
+.logo small{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;margin-top:6px}
+.today{font:500 12px var(--mono);color:var(--muted);letter-spacing:.04em;text-align:right}
+.today b{display:block;color:var(--ink);font-family:var(--body);font-size:14px;letter-spacing:0}
+header.mast{background:var(--ink);color:var(--bg)}
+.topright{display:flex;align-items:center;gap:16px}
+.topline .allbtn{margin:0;padding:10px 14px}
+.mrowbar{display:flex;align-items:stretch;gap:12px;min-height:50px}
+.mlinks{flex:1;min-width:0;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.mlinks::-webkit-scrollbar{display:none}
+.mlinks a{display:flex;align-items:center;white-space:nowrap;text-decoration:none;color:var(--bg);font:600 15px var(--body);padding:0 13px;border-bottom:3px solid transparent}
+.mlinks a:first-child{padding-left:0}
+.mlinks a:hover{border-bottom-color:var(--apricot)}
+.allbtn{flex:none;display:flex;align-items:center;gap:8px;background:var(--apricot);color:#fff;border:0;border-radius:8px;font:700 14px var(--body);padding:0 14px;margin-block:8px;cursor:pointer}
+.bars{display:grid;gap:3px}.bars span{display:block;width:16px;height:2px;background:#fff}
+.mlinks a.home{gap:6px;color:#ffb26b}
+.mlinks a.active{border-bottom-color:var(--apricot);color:#fff;background:rgba(255,255,255,.06)}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+main section[id],[id="top"],#hotels,#season,#food{scroll-margin-top:64px}
+.tohome{position:fixed;right:max(16px, calc(env(safe-area-inset-right, 0px) + 16px));bottom:calc(env(safe-area-inset-bottom, 0px) + 18px);z-index:20;display:flex;align-items:center;gap:8px;background:var(--apricot);color:#fff;text-decoration:none;font:700 14px var(--body);padding:12px 16px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s}
+.tohome.off{opacity:0;transform:translateY(12px);pointer-events:none}
+.allgrid .chips a.active{background:var(--apricot);border-color:var(--apricot)}
+/* Moving section tiles */
+.ribbon{background:linear-gradient(180deg,#1b2733,#15202a);display:grid;gap:10px;padding-block:14px;overflow:hidden}
+.mrow{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y;overscroll-behavior-x:contain;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.mtrack{display:flex;gap:10px;width:max-content;padding-inline:5px}
+.mtrack a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#eef3f6;font:600 14px var(--body);padding:6px 14px 6px 6px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);white-space:nowrap;transition:background .2s,transform .2s,border-color .2s}
+.mtrack .ti{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--d);color:#15202a}
+.mtrack .ti svg{width:15px;height:15px}
+.mtrack a:hover,.mtrack a:focus-visible{background:rgba(255,255,255,.14);border-color:var(--d);transform:translateY(-2px)}
+@media (max-width:620px){.mtrack a{font-size:13px;padding:5px 12px 5px 5px}.mtrack .ti{width:24px;height:24px}.ribbon{padding-block:10px;gap:8px}}
+
+.mrow::-webkit-scrollbar{display:none}
+.mrow.dragging{cursor:grabbing}
+.mrow.dragging a{pointer-events:none}
+.crumb{background:var(--surface);border-bottom:1px solid var(--line)}
+.crumb .wrap{display:flex;align-items:center;gap:12px;padding-block:12px}
+.crumb a{font-weight:700;text-decoration:none;color:var(--apricot)}
+.crumb span{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.view-hidden{display:none!important}
+.artbox,.fpic{position:relative}
+.artbox{height:160px;overflow:hidden}
+.artbox .art{height:100%;width:100%}
+.artbox img,.fpic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcred{position:absolute;right:6px;bottom:6px;font:500 10px var(--mono);color:#fff;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:3px;text-decoration:none}
+.noimg .pcred{display:none}
+.fpic{aspect-ratio:5/3}
+.fpic svg{position:absolute;inset:0;height:100%}
+.fbwall{margin-top:28px;border:1px solid var(--line,#ddd);border-radius:14px;padding:18px;background:var(--card,#fff)}
+.fbhead h3{font-size:20px;margin:0 0 4px}.fbhead p{margin:0 0 14px;color:var(--muted,#666);font-size:15px}
+.fbframe{display:flex;justify-content:center}.fbframe iframe{border:0;width:100%;max-width:500px;height:620px;border-radius:10px;background:#fff}
+.fbfallback{display:flex;gap:14px;align-items:center;width:100%;text-decoration:none;color:inherit;background:linear-gradient(135deg,#1877f2,#0b4fb3);color:#fff;border-radius:12px;padding:18px}
+.fbfallback small{display:block;opacity:.9;font-size:14px;margin-top:2px}.fbicon{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;color:#1877f2;font:800 28px/44px system-ui;text-align:center}
+.cimg{position:relative;margin:-20px -20px 4px;aspect-ratio:16/9;overflow:hidden;border-radius:10px 10px 0 0;background:var(--line)}
+.story.lead .cimg{margin:-28px -28px 6px}.op .cimg{margin:0 0 4px;border-radius:8px}.win .cimg{border-radius:12px 12px 0 0}
+.cimg img{width:100%;height:100%;object-fit:cover;display:block}
+.post .thumb{overflow:hidden}.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.post .thumb .plat{z-index:1}.pcred2{position:absolute;right:6px;bottom:6px;z-index:1;font:500 10px var(--mono);color:#fff;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:3px}
+.fimg{position:relative;display:block;margin:-14px -16px 4px;aspect-ratio:16/9;overflow:hidden;border-radius:0 9px 0 0}
+.fimg img{width:100%;height:100%;object-fit:cover;display:block}.fi .fimg small{position:absolute;right:6px;bottom:6px;font:500 10px var(--mono);color:#fff!important;margin:0;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:3px}
+.allgrid{background:var(--ink);border-top:1px solid rgba(255,255,255,.12)}
+.chips a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--bg);font:600 14px var(--body);padding:9px 12px;border-radius:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);white-space:nowrap}
+.chips a::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--d)}
+.chips a:hover{background:var(--apricot);border-color:var(--apricot);color:#fff}
+.chips a:hover::before{background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding-block:12px}
+@media (max-width:620px){
+  .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .chips a{padding:8px 9px;font-size:13px;min-width:0}
+  .topline .wrap{padding-block:10px}
+  .logo b{font-size:24px}
+  .today{display:none}
+}
+
+/* Hero: dusk over Tirich Mir, always dark */
+.hero{--h-ink:#fff7ef;--h-muted:#f3d9c4;position:relative;overflow:hidden;background:#1a1530;color:var(--h-ink);isolation:isolate}
+.hero .scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;padding-block:64px 150px;align-items:center}
+.hero-copy{min-width:0}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;color:var(--h-ink)}
+.kicker i{width:8px;height:8px;border-radius:50%;background:#ff5a4e}
+.hero h1{font-size:clamp(40px,6.6vw,84px);font-weight:800;letter-spacing:-.035em;line-height:.98;margin-top:18px;color:var(--h-ink)}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#ffb26b,#ff6f61);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:48ch;color:var(--h-muted);font-size:19px;margin:18px 0 26px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn{font-size:16px;padding:13px 20px}
+.hero .btn.ghost{color:var(--h-ink);border-color:rgba(255,255,255,.6)}
+.trend{background:rgba(15,12,30,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px;display:grid;gap:4px;min-width:0}
+.trend h2{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#ffb26b;margin-bottom:6px}
+.trend a{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;text-decoration:none;color:var(--h-ink);padding:10px 6px;border-top:1px solid rgba(255,255,255,.12);border-radius:6px}
+.trend a:first-of-type{border-top:0}
+.trend a:hover{background:rgba(255,255,255,.08)}
+.trend .n{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;color:rgba(255,255,255,.35);width:26px}
+.trend b{display:block;font-size:16px;line-height:1.3}
+.trend small{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--h-muted)}
+
+/* Breaking ticker */
+.breaking{background:var(--apricot);color:#fff;display:flex;align-items:stretch;overflow:hidden;font-weight:600}
+.breaking .lbl{flex:none;background:#1a1530;color:#fff;font:500 12px var(--mono);letter-spacing:.1em;padding:12px max(16px, env(safe-area-inset-left, 0px));display:flex;align-items:center;gap:8px}
+.breaking .lbl i{width:8px;height:8px;border-radius:50%;background:#ff5a4e}
+.breaking .track{overflow:hidden;flex:1;min-width:0;display:flex;align-items:center}
+.breaking .run{display:flex;gap:48px;white-space:nowrap;padding-left:24px}
+.breaking .run a{color:#fff;text-decoration:none}
+.breaking .run a::before{content:"◆";margin-right:12px;opacity:.6;font-size:10px;vertical-align:2px}
+
+/* Quick jump tiles */
+.jump{margin-top:-96px;position:relative;z-index:2}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.tile{position:relative;overflow:hidden;border-radius:14px;padding:16px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;color:#fff;box-shadow:0 10px 30px rgba(10,10,30,.25);min-width:0}
+.tile b{font-family:var(--display);font-size:22px;font-weight:800;line-height:1.05}
+.tile small{font-size:13px;opacity:.9;margin-top:4px}
+.tile .ico{position:absolute;top:12px;right:12px;width:34px;height:34px;opacity:.9}
+.tile .cnt{position:absolute;top:14px;left:16px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:4px}
+.t1{background:linear-gradient(150deg,#ff6f61,#c2273b)}
+.t2{background:linear-gradient(150deg,#3a3a8c,#1a1530)}
+.t3{background:linear-gradient(150deg,#2c8a5a,#1f4e6b)}
+.t4{background:linear-gradient(150deg,#2b5ea8,#16324f)}
+.t5{background:linear-gradient(150deg,#e9a21f,#c2581b)}
+.t6{background:linear-gradient(150deg,#6b4bb8,#3a2672)}
+@media (prefers-reduced-motion:no-preference){
+  .breaking .run{animation:tick 45s linear infinite}
+  .breaking:hover .run{animation-play-state:paused}
+  .kicker i{animation:pulse 1.8s infinite}
+  .tile{transition:transform .2s ease}
+  .tile:hover{transform:translateY(-4px)}
+}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,78,.7)}70%{box-shadow:0 0 0 9px rgba(255,90,78,0)}100%{box-shadow:0 0 0 0 rgba(255,90,78,0)}}
+@media (max-width:960px){.tiles{grid-template-columns:repeat(3,1fr)}.hero .wrap{grid-template-columns:1fr}}
+@media (max-width:620px){.tiles{grid-template-columns:repeat(2,1fr)}.tile{min-height:120px}.hero .wrap{padding-block:40px 130px}}
+
+section{padding-block:56px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.sec-head h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;letter-spacing:-.02em}
+.sec-head p{margin:0;color:var(--muted);max-width:56ch}
+
+/* News */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.story{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.story.lead{grid-column:span 2;grid-row:span 2;padding:28px}
+.story.lead h3{font-size:30px}
+.story h3{font-size:20px;font-weight:700}
+.story p{margin:0;color:var(--muted)}
+.tag{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--glacier-soft);color:var(--glacier)}
+.tag.weather{background:var(--apricot-soft);color:var(--apricot)}
+.credit{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.credit a{font-weight:600}
+
+/* Partner slot */
+.partner{border:2px dashed var(--apricot);border-radius:10px;padding:18px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--apricot-soft)}
+.partner strong{font-family:var(--display);font-size:20px}
+.partner p{margin:2px 0 0;color:var(--muted);font-size:15px}
+.btn{font-family:var(--body);font-weight:700;font-size:15px;border:0;border-radius:8px;padding:10px 16px;background:var(--apricot);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+
+/* Viral */
+.viral-wrap{background:var(--surface);border-block:1px solid var(--line)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{font:600 14px var(--body);padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.viral{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.post{text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;min-width:0}
+.thumb{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;position:relative;color:#fff;font-family:var(--display);font-weight:800;font-size:44px}
+.thumb .plat{position:absolute;top:10px;left:10px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:4px}
+.thumb .views{position:absolute;bottom:10px;right:10px;font:500 12px var(--mono);background:rgba(0,0,0,.55);padding:4px 8px;border-radius:4px}
+.post .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.post h3{font-size:17px;font-weight:700}
+.post p{margin:0;font-size:15px;color:var(--muted)}
+.via{margin-top:auto;font-size:13px;padding:8px 10px;border-radius:6px;background:var(--glacier-soft);color:var(--glacier);font-weight:600}
+.note{margin-top:18px;font-size:14px;color:var(--muted)}
+
+/* Travel */
+.travel{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.guide{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.guide .art{height:120px;max-width:100%}
+.guide .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.guide h3{font-size:22px;font-weight:700}
+.facts{display:flex;flex-wrap:wrap;gap:6px}
+.facts span{font:500 12px var(--mono);padding:4px 8px;border-radius:4px;border:1px solid var(--line);color:var(--ink);font-variant-numeric:tabular-nums}
+.guide p{margin:0;color:var(--muted);font-size:16px}
+.guide .aff{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:6px}
+.guide .aff a{font-size:13px;font-weight:700;text-decoration:none;padding:6px 10px;border-radius:6px;border:1.5px dashed var(--apricot);color:var(--apricot)}
+
+/* Season table */
+.season{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.season h3{font-size:22px;margin-bottom:12px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;font-weight:600;white-space:nowrap}
+th{font:500 11px var(--mono);letter-spacing:.06em;color:var(--muted)}
+.c3{background:var(--kalash-3);color:#fff;border-radius:4px}
+.c2{background:var(--kalash-2);color:#3a2a00;border-radius:4px}
+.c1{background:var(--line);color:var(--muted);border-radius:4px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+
+/* Gear strip */
+.gear{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.gear div{background:var(--surface);border:1px dashed var(--apricot);border-radius:10px;padding:14px}
+.gear b{display:block;font-family:var(--display);font-size:17px}
+.gear small{color:var(--muted);font-size:14px}
+
+/* Videos */
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.vid{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.vid .screen{aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;position:relative}
+.vid .play{width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.6);display:grid;place-items:center}
+.vid .play::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.vid .yt{position:absolute;top:10px;left:10px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;background:#c4302b;color:#fff;padding:4px 8px;border-radius:4px}
+.vid .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.vid h3{font-size:17px;font-weight:700}
+.vid p{margin:0;font-size:15px;color:var(--muted)}
+.vid .via{margin-top:auto}
+.vid:hover h3{color:var(--glacier)}
+
+/* Culture */
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.fest{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.fest div{border-top:4px solid var(--kalash-1);padding:14px 4px 0;min-width:0}
+.fest div:nth-child(2){border-color:var(--kalash-2)}
+.fest div:nth-child(3){border-color:var(--kalash-3)}
+.fest div:nth-child(4){border-color:var(--kalash-4)}
+.fest div:nth-child(5){border-color:var(--apricot)}
+.fest .when{font:500 12px var(--mono);color:var(--apricot);letter-spacing:.05em;text-transform:uppercase}
+.fest b{display:block;font-family:var(--display);font-size:20px;margin:4px 0}
+.fest p{margin:0;font-size:15px;color:var(--muted)}
+.food{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.food div{background:var(--bg);border-radius:10px;padding:16px;min-width:0}
+.fpic{display:block;margin:-16px -16px 12px;border-radius:10px 10px 0 0;overflow:hidden}
+.fpic svg{display:block;width:100%;height:auto}
+.food b{font-family:var(--display);font-size:18px;display:block}
+.food i{font-style:normal;font:500 12px var(--mono);color:var(--muted)}
+.food p{margin:6px 0 0;font-size:15px;color:var(--muted)}
+h3.sub{font-size:24px;margin:0 0 14px}
+
+/* Roads */
+.roads{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.road{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0}
+.road b{font-size:17px}
+.road small{display:block;color:var(--muted);font-size:14px}
+.pill{font:500 12px var(--mono);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.pill.open{background:#d7f0e1;color:#1d6b43}
+.pill.warn{background:#fcefc7;color:#7a5600}
+.pill.shut{background:#f8d9dc;color:#9b1c2c}
+
+/* Shop */
+.shop{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.item .sw{height:70px;border-radius:8px}
+.item b{font-family:var(--display);font-size:18px}
+.item p{margin:0;font-size:15px;color:var(--muted)}
+.item .btn{margin-top:auto;text-align:center}
+
+/* Directory */
+.dir{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dir div{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--surface);min-width:0}
+.dir b{font-family:var(--display);font-size:18px;display:block}
+.dir p{margin:4px 0 10px;font-size:15px;color:var(--muted)}
+@media (max-width:960px){.videos,.dir{grid-template-columns:1fr 1fr}.fest{grid-template-columns:1fr 1fr 1fr}.food,.shop{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.videos,.dir,.fest,.food,.shop,.roads{grid-template-columns:1fr}}
+
+/* Sports */
+.sports{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.sport-col h3{font-size:22px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sport-col h3 span{font:500 11px var(--mono);letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:var(--glacier-soft);color:var(--glacier)}
+.sport-col .story{margin-bottom:14px}
+
+/* Careers */
+.jobs{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.job{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.job:last-child{border-bottom:0}
+.job b{font-size:17px}
+.job small{display:block;color:var(--muted);font-size:14px}
+.job .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.job .meta span{font:500 11px var(--mono);padding:3px 7px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.job a.btn{font-size:14px;padding:8px 12px;white-space:nowrap}
+
+/* Success */
+.wins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.win{background:var(--bg);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.win .big{font-family:var(--display);font-weight:800;font-size:15px;color:var(--apricot);letter-spacing:.02em;text-transform:uppercase}
+.win h3{font-size:20px}
+.win p{margin:0;color:var(--muted);font-size:15px}
+
+/* Opinion */
+.ops{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+.op{border-left:3px solid var(--ink);padding:4px 0 4px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.op h3{font-size:22px}
+.op.main h3{font-size:30px}
+.op p{margin:0;color:var(--muted)}
+.op .by{font:500 12px var(--mono);color:var(--ink);letter-spacing:.04em}
+.write{margin-top:24px}
+@media (max-width:960px){.ops{grid-template-columns:1fr 1fr}.op.main{grid-column:1/-1}.wins{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.sports,.wins,.ops{grid-template-columns:1fr}.job{grid-template-columns:1fr}nav{flex-wrap:nowrap;overflow-x:auto;max-width:100%}}
+
+/* Just In feed */
+.fresh{padding-block:40px 8px}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fi{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--c,var(--glacier));border-radius:10px;padding:14px 16px;min-width:0}
+.fi:hover{border-color:var(--c,var(--glacier))}
+.fi .ft{align-self:flex-start;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--c,var(--glacier));padding:3px 8px;border-radius:4px}
+.fi b{font-size:17px;line-height:1.3}
+.fhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fi time{font:500 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.fi .ft{align-self:auto}
+.fi small{color:var(--muted);font-size:13px}
+.k-song{--c:#6b4bb8}.k-news{--c:#1f4e6b}.k-sport{--c:#2b5ea8}.k-weather{--c:#2c8a5a}.k-viral{--c:#c2273b}.k-jobs{--c:#c2581b}
+.jump{margin-top:-96px;position:relative;z-index:2;margin-bottom:-0px}
+.jump + .breaking{margin-top:24px}
+@media (max-width:960px){.feed{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.feed{grid-template-columns:1fr}}
+
+/* Viral clips reels */
+.clips{padding-block:40px 0}
+.rnav{display:flex;gap:8px}
+.rnav button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.reels{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;padding-bottom:6px}
+.reel{scroll-snap-align:start;position:relative;aspect-ratio:9/16;max-width:100%;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;display:block;box-shadow:0 8px 22px rgba(10,10,30,.2)}
+.reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.8))}
+.reel .big{position:absolute;top:22%;left:0;right:0;text-align:center;font-family:var(--display);font-weight:800;font-size:26px;opacity:.35;z-index:0}
+.reel .rp{position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:2px solid rgba(255,255,255,.8);z-index:2}
+.reel .rp::after{content:"";position:absolute;left:21px;top:16px;border-left:17px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.reel .rinfo{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:grid;gap:4px}
+.reel .rplat{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+.reel b{font-size:15px;line-height:1.25}
+@media (prefers-reduced-motion:no-preference){.reel{transition:transform .2s ease}.reel:hover{transform:scale(1.03)}.reel:hover .rp{background:#e07a2e;border-color:#e07a2e}}
+.reel .big{font-size:17px;padding:0 6px}
+.reel b{font-size:13px}
+.reel .rp{width:44px;height:44px;margin:-22px 0 0 -22px}
+.reel .rp::after{left:16px;top:12px;border-left-width:14px;border-top-width:9px;border-bottom-width:9px}
+@media (max-width:960px){.reels{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:620px){.reels{grid-template-columns:none;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:31%;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;gap:8px}.reels::-webkit-scrollbar{display:none}.reel{border-radius:12px}.reel .rinfo{left:8px;right:8px;bottom:8px}.reel b{font-size:12px}.reel .rplat{font-size:10px}.reel .big{font-size:14px}}
+
+/* Hotels */
+.hsearch{display:grid;grid-template-columns:1.4fr 1fr 1fr .7fr auto;gap:12px;align-items:end;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.hsearch label{display:block;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.hsearch select,.hsearch input{width:100%;font:600 15px var(--body);padding:10px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);min-width:0}
+.hsearch .btn{padding:12px 18px;text-align:center}
+.htabs{display:flex;gap:6px;margin-bottom:16px}
+.htabs button{font:700 15px var(--body);padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.htabs button[aria-selected="true"]{background:var(--glacier);border-color:var(--glacier);color:var(--surface)}
+.hotels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hotel{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.hotel .hbody{display:flex;flex-direction:column;gap:8px}
+.hotel h3{font-size:21px}
+.hotel p{margin:0;color:var(--muted);font-size:15px}
+.price{display:grid;gap:2px;padding:10px 12px;border-radius:8px;background:var(--apricot-soft)}
+.price b{font-family:var(--display);font-size:19px;color:var(--ink)}
+.price span{font-size:13px;color:var(--muted)}
+.price small{font-size:12px;color:var(--muted)}
+.price.none{background:var(--surface);border:1px dashed var(--line)}
+.price.none b{font-size:16px}
+.hact{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hact .num{font-family:var(--mono);font-size:13px;font-weight:500;margin-left:4px}
+.nocontact{font-size:14px;color:var(--muted);font-style:italic}
+.hact .aff{font:500 11px var(--mono);color:var(--muted)}
+@media (max-width:960px){.hotels{grid-template-columns:1fr 1fr}.hsearch{grid-template-columns:1fr 1fr}.hsearch .btn{grid-column:1/-1}}
+@media (max-width:620px){.hotels{grid-template-columns:1fr}}
+
+/* Video player modal (works on the published site; the preview opens YouTube instead) */
+.vid .screen{overflow:hidden}
+.vid .vthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vid .play,.vid .yt{z-index:1}
+.hoverplay{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1;pointer-events:none}
+.player{position:fixed;inset:0;z-index:50;background:rgba(8,6,20,.88);display:grid;place-items:center;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.player[hidden]{display:none}
+.pbox{width:min(960px,100%);display:grid;gap:10px}
+.pbox.tall{width:min(380px,100%)}
+.pframe{position:relative;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:12px;overflow:hidden}
+.pbox.tall .pframe{aspect-ratio:9/16;max-height:80vh}
+.pframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pbar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff}
+.pbar b{font-size:16px}
+.pbar a{color:#ffb26b;font-weight:600;font-size:14px}
+.pclose{background:#fff;color:#111;border:0;border-radius:999px;font:700 14px var(--body);padding:8px 14px;cursor:pointer}
+
+footer{background:var(--ink);color:var(--bg);padding-block:40px}
+footer .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+footer h4{font-family:var(--display);margin:0 0 10px;font-size:18px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+footer a{color:var(--bg);opacity:.85}
+footer p{margin:0;opacity:.8;font-size:15px}
+
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-copy{padding-bottom:0}
+  .news,.travel{grid-template-columns:1fr 1fr}
+  .viral,.gear{grid-template-columns:1fr 1fr}
+  footer .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  .news,.travel,.viral,.gear,footer .wrap{grid-template-columns:1fr}
+  .story.lead{grid-column:auto;grid-row:auto}
+  .story.lead h3{font-size:24px}
+  nav a{padding:5px 9px;font-size:14px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .post,.guide,.story{transition:transform .2s ease}
+  .post:hover,.guide:hover,.story:hover{transform:translateY(-3px)}
+}
+</style>
+</head>
+<body>
+
+<div class="band" aria-hidden="true"></div>
+<div class="topline">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>Chitral<span>Pulse</span></b></a>
+    <div class="topright"><div class="today"><b id="today-date">Friday, 20 November 2026</b>Chitral · Upper &amp; Lower</div><button type="button" class="allbtn" id="allbtn" aria-expanded="false" aria-controls="allgrid"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>Menu</button></div>
+  </div>
+</div>
+<header class="mast">
+  <div class="allgrid" id="allgrid" hidden><div class="wrap"><nav class="chips" aria-label="All sections"><a href="#top" style="--d:#ffb26b">Home</a><a href="#fresh" style="--d:#ff5a4e">Just In</a><a href="#viral" style="--d:#c2273b">Viral</a><a href="#clips" style="--d:#6b4bb8">Clips</a><a href="#news" style="--d:#8cc3e3">News</a><a href="#videos" style="--d:#a79bff">Videos</a><a href="#travel" style="--d:#2c8a5a">Travel</a><a href="#hotels" style="--d:#6b4bb8">Hotels</a><a href="#sports" style="--d:#2b5ea8">Sports</a><a href="#careers" style="--d:#e07a2e">Careers</a><a href="#opinion" style="--d:#ffffff">Opinion</a><a href="#success" style="--d:#f1b52b">Success</a><a href="#culture" style="--d:#c2273b">Culture</a><a href="#food" style="--d:#e07a2e">Food</a><a href="#roads" style="--d:#2c8a5a">Roads</a><a href="#season" style="--d:#2b5ea8">Best Time</a><a href="#shop" style="--d:#f1b52b">Shop</a><a href="#directory" style="--d:#8cc3e3">Directory</a></nav></div></div>
+</header>
+<nav class="ribbon" id="ribbon" aria-label="Explore sections">
+  <div class="mrow ltr"><div class="mtrack"><a href="#fresh" style="--d:#ff5a4e"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Just In</a><a href="#viral" style="--d:#e0475a"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg></span>Viral</a><a href="#clips" style="--d:#8a6be0"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></span>Clips</a><a href="#news" style="--d:#4f9fd1"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>News</a><a href="#videos" style="--d:#a79bff"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/></svg></span>Videos</a><a href="#travel" style="--d:#3fae76"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 20l6-10 4 6 3-4 5 8z"/></svg></span>Travel</a><a href="#hotels" style="--d:#b78ae8"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/></svg></span>Hotels</a><a href="#sports" style="--d:#5b8fe0"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/></svg></span>Sports</a><a href="#careers" style="--d:#f08a3e"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/></svg></span>Careers</a><a href="#fresh" style="--d:#ff5a4e" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Just In</a><a href="#viral" style="--d:#e0475a" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg></span>Viral</a><a href="#clips" style="--d:#8a6be0" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></span>Clips</a><a href="#news" style="--d:#4f9fd1" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>News</a><a href="#videos" style="--d:#a79bff" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/></svg></span>Videos</a><a href="#travel" style="--d:#3fae76" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 20l6-10 4 6 3-4 5 8z"/></svg></span>Travel</a><a href="#hotels" style="--d:#b78ae8" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/></svg></span>Hotels</a><a href="#sports" style="--d:#5b8fe0" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/></svg></span>Sports</a><a href="#careers" style="--d:#f08a3e" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/></svg></span>Careers</a></div></div>
+  <div class="mrow rtl"><div class="mtrack"><a href="#opinion" style="--d:#d9dde3"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg></span>Opinion</a><a href="#success" style="--d:#f1b52b"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>Success</a><a href="#culture" style="--d:#e0475a"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="12" cy="7" rx="8" ry="3"/><path d="M4 7v9c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span>Culture</a><a href="#food" style="--d:#f08a3e"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11h18a9 9 0 0 1-18 0zM8 7c0-2 2-2 2-4M14 7c0-2 2-2 2-4"/></svg></span>Food</a><a href="#roads" style="--d:#3fae76"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M8 3L4 21M16 3l4 18M12 5v3M12 11v3M12 17v3"/></svg></span>Roads</a><a href="#season" style="--d:#5b8fe0"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>Best Time</a><a href="#shop" style="--d:#f1b52b"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M5 8h14l-1 13H6zM9 8a3 3 0 0 1 6 0"/></svg></span>Shop</a><a href="#directory" style="--d:#8cc3e3"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Directory</a><a href="#top" style="--d:#ffb26b"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7v9H3z"/></svg></span>Home</a><a href="#opinion" style="--d:#d9dde3" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg></span>Opinion</a><a href="#success" style="--d:#f1b52b" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>Success</a><a href="#culture" style="--d:#e0475a" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="12" cy="7" rx="8" ry="3"/><path d="M4 7v9c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span>Culture</a><a href="#food" style="--d:#f08a3e" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11h18a9 9 0 0 1-18 0zM8 7c0-2 2-2 2-4M14 7c0-2 2-2 2-4"/></svg></span>Food</a><a href="#roads" style="--d:#3fae76" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M8 3L4 21M16 3l4 18M12 5v3M12 11v3M12 17v3"/></svg></span>Roads</a><a href="#season" style="--d:#5b8fe0" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>Best Time</a><a href="#shop" style="--d:#f1b52b" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M5 8h14l-1 13H6zM9 8a3 3 0 0 1 6 0"/></svg></span>Shop</a><a href="#directory" style="--d:#8cc3e3" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Directory</a><a href="#top" style="--d:#ffb26b" tabindex="-1" aria-hidden="true"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7v9H3z"/></svg></span>Home</a></div></div>
+</nav>
+
+<div class="hero" id="top">
+  <svg class="scene" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1530"/><stop offset=".45" stop-color="#4a2a5e"/><stop offset=".75" stop-color="#c8566a"/><stop offset="1" stop-color="#ffb26b"/></linearGradient>
+      <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffe2b8"/><stop offset=".4" stop-color="#ffb26b" stop-opacity=".8"/><stop offset="1" stop-color="#ffb26b" stop-opacity="0"/></radialGradient>
+      <linearGradient id="peak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9c0"/><stop offset="1" stop-color="#8a5a8a"/></linearGradient>
+    </defs>
+    <rect width="1440" height="720" fill="url(#sky)"/>
+    <g fill="#fff" opacity=".7"><circle cx="120" cy="60" r="1.4"/><circle cx="300" cy="110" r="1"/><circle cx="520" cy="40" r="1.3"/><circle cx="700" cy="90" r="1"/><circle cx="860" cy="30" r="1.5"/><circle cx="1010" cy="120" r="1"/><circle cx="1200" cy="55" r="1.3"/><circle cx="1350" cy="100" r="1"/><circle cx="420" cy="170" r=".9"/><circle cx="1100" cy="190" r=".9"/></g>
+    <circle cx="1060" cy="470" r="230" fill="url(#sun)"/>
+    <polygon points="560,720 820,360 900,300 960,240 1010,280 1070,330 1160,410 1440,560 1440,720" fill="url(#peak)" opacity=".9"/>
+    <polygon points="900,300 960,240 1010,280 990,292 968,272 948,300 925,288" fill="#fff6ee"/>
+    <polygon points="0,720 0,520 180,430 320,500 470,400 620,480 760,420 900,500 1080,450 1260,520 1440,470 1440,720" fill="#3a2550"/>
+    <polygon points="0,720 0,600 220,540 420,610 640,550 860,620 1080,570 1300,630 1440,600 1440,720" fill="#22183a"/>
+    <path d="M0,690 C240,660 420,705 700,680 S1180,660 1440,690 L1440,720 L0,720 Z" fill="#140f26"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="kicker"><i aria-hidden="true"></i>Live from Chitral</span>
+      <h1>The valley's stories, <em>trending</em> right now.</h1>
+      <p>Breaking news, the posts everyone's sharing, videos, jobs and travel guides to the Hindu Kush. All in one place, every source credited.</p>
+      <div class="cta-row"><a class="btn" href="#fresh">Read today's news</a><a class="btn ghost" href="#clips">Watch viral clips</a></div>
+    </div>
+    <aside class="trend" aria-label="Trending now">
+      <h2>Trending now</h2>
+      <a href="https://chitraltoday.net/2026/11/20/nab-intervenes-to-dispose-of-illegal-timber-in-arandu/" target="_blank" rel="noopener"><span class="n">1</span><span><b>NAB steps in over illegal timber in Arandu</b><small>News · 20 Nov · Chitral Today</small></span></a>
+      <a href="https://chitraltoday.net/2026/11/17/alamgir-ghazi-saff-football-championship/" target="_blank" rel="noopener"><span class="n">2</span><span><b>Chitral's Alamgir shines in SAFF final vs India</b><small>Sports · 17 Nov · Chitral Today</small></span></a>
+      <a href="https://chitraltoday.net/2026/11/17/sliding-mastuj-road-near-gahlasht-bridge/" target="_blank" rel="noopener"><span class="n">3</span><span><b>Sliding Mastuj road near Gahlasht Bridge</b><small>Roads · 17 Nov · Chitral Today</small></span></a>
+      <a href="https://chitraltoday.net/2026/11/14/heavy-snowfall-alert-in-chitral/" target="_blank" rel="noopener"><span class="n">4</span><span><b>Heavy snowfall alert for Chitral</b><small>Weather · 14 Nov · Chitral Today</small></span></a>
+      <a href="https://chitraltoday.net/2026/11/10/dispute-over-chitral-gb-boundary-is-a-conspiracy/" target="_blank" rel="noopener"><span class="n">5</span><span><b>Shandur boundary row with GB</b><small>Debate · 10 Nov · Chitral Today</small></span></a>
+    </aside>
+  </div>
+</div>
+
+<div class="jump">
+  <div class="wrap">
+    <nav class="tiles" aria-label="Explore">
+      <a class="tile t1" href="#viral"><span class="cnt">Hot</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><b>Viral</b><small>What everyone's sharing</small></a>
+      <a class="tile t2" href="#videos"><span class="cnt">6 clips</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="#fff"/></svg><b>Videos</b><small>Watch Chitral</small></a>
+      <a class="tile t3" href="#travel"><span class="cnt">6 guides</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 20l6-10 4 6 3-4 5 8z"/></svg><b>Travel</b><small>Kalash, Shandur &amp; more</small></a>
+      <a class="tile t4" href="#sports"><span class="cnt">Latest</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/></svg><b>Sports</b><small>Cricket &amp; football</small></a>
+      <a class="tile t5" href="#careers"><span class="cnt">7 jobs</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/></svg><b>Careers</b><small>Jobs in Chitral</small></a>
+      <a class="tile t6" href="#hotels"><span class="cnt">Book now</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg><b>Hotels</b><small>Chitral &amp; Islamabad</small></a>
+    </nav>
+  </div>
+</div>
+<div class="breaking" role="region" aria-label="Breaking headlines">
+  <span class="lbl"><i aria-hidden="true"></i>BREAKING</span>
+  <div class="track"><div class="run">
+    <a href="#fresh">Heavy snowfall alert for Chitral</a>
+    <a href="#fresh">Pakistan lose SAFF final 2-1 to India</a>
+    <a href="#fresh">2nd Test vs Sri Lanka under way in Rawalpindi</a>
+    <a href="#fresh">Landslide-hit road reopened</a>
+    <a href="#fresh">Upper Chitral recovers 215 kanals of state land</a>
+    <a href="#fresh" aria-hidden="true" tabindex="-1">Heavy snowfall alert for Chitral</a>
+    <a href="#fresh" aria-hidden="true" tabindex="-1">Pakistan lose SAFF final 2-1 to India</a>
+    <a href="#fresh" aria-hidden="true" tabindex="-1">2nd Test vs Sri Lanka under way in Rawalpindi</a>
+    <a href="#fresh" aria-hidden="true" tabindex="-1">Landslide-hit road reopened</a>
+    <a href="#fresh" aria-hidden="true" tabindex="-1">Upper Chitral recovers 215 kanals of state land</a>
+  </div></div>
+</div>
+
+
+<main>
+<div class="crumb" id="crumb" hidden><div class="wrap"><a href="#top">← Home</a><span id="crumb-name"></span></div></div>
+<section id="clips" class="clips">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Viral Clips</h2>
+    </div>
+    <div class="reels" id="reels">
+      <a class="reel" href="https://www.youtube.com/watch?v=hoDNn7kHH3c" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#2c8a5a,#e07a2e)"><img src="https://i.ytimg.com/vi/hoDNn7kHH3c/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Shandur Polo</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube</span><b>Epic Shandur polo battle at 12,000 ft</b></span></a>
+      <a class="reel" href="https://www.tiktok.com/tag/chitrali?lang=en" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#111,#c2273b)"><span class="big">#chitrali</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">TikTok</span><b>Chitrali sitar, songs and village life</b></span></a>
+      <a class="reel" href="https://www.youtube.com/watch?v=QHrEt_yFDz0" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#e07a2e,#c2273b)"><img src="https://i.ytimg.com/vi/QHrEt_yFDz0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Dance</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube</span><b>Chitrali dance at Shandur</b></span></a>
+      <a class="reel" href="https://www.youtube.com/watch?v=nQN7I9Ufb-Q" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#1f4e6b,#2c8a5a)"><img src="https://i.ytimg.com/vi/nQN7I9Ufb-Q/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Kalash 4K</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube</span><b>Chitral &amp; Kalash Valley in 4K</b></span></a>
+      <a class="reel" href="https://www.tiktok.com/tag/kalash?lang=en" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#c2273b,#f1b52b)"><span class="big">#kalash</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">TikTok</span><b>Festivals of the Kalash valleys</b></span></a>
+      <a class="reel" href="https://www.youtube.com/watch?v=edFSe92EKVw" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#6b4bb8,#1a1530)"><img src="https://i.ytimg.com/vi/edFSe92EKVw/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Music</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube · Danish Rashid</span><b>"Hardi", official music video</b></span></a>
+      <a class="reel" href="https://www.youtube.com/watch?v=nZSWLreGbLM" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#15232e,#2b5ea8)"><img src="https://i.ytimg.com/vi/nZSWLreGbLM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Lowari</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube</span><b>Night drive through the Lowari Tunnel</b></span></a>
+      <a class="reel" href="https://www.youtube.com/watch?v=qDSRo7KQiUM" target="_blank" rel="noopener" style="background:linear-gradient(170deg,#2b5ea8,#8cc3e3)"><img src="https://i.ytimg.com/vi/qDSRo7KQiUM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="big">Hot springs</span><span class="rp" aria-hidden="true"></span><span class="rinfo"><span class="rplat">YouTube</span><b>A dip in the Garam Chashma hot springs</b></span></a>
+    </div>
+    <p class="note">On the published website YouTube clips play right here, with a silent preview on hover. TikTok clips open on TikTok. Credit and views go to the creators.</p>
+  </div>
+</section>
+
+<section id="fresh" class="fresh">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Just In</h2>
+      <p>The freshest from Chitral and Pakistan, newest first, with the date each story was published.</p>
+    </div>
+    <div class="feed">
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/20/nab-intervenes-to-dispose-of-illegal-timber-in-arandu/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/01/timber.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">News</span><time>20 Nov 2026</time></span><b>NAB intervenes to dispose of illegal timber seized in Arandu</b><small>Chitral Today</small></a>
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/18/educator-from-parwak-earns-phd-from-aiou/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/shafiq.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Success</span><time>18 Nov 2026</time></span><b>Educator from Parwak earns PhD from AIOU</b><small>Chitral Today</small></a>
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/18/srsp-holds-disaster-preparedness-training-in-morder/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/session.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Community</span><time>18 Nov 2026</time></span><b>SRSP holds disaster preparedness training in Morder</b><small>Chitral Today</small></a>
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/19/upper-chitral-reaffirms-commitment-to-interfaith-harmony/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/meeting-1-1.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">News</span><time>19 Nov 2026</time></span><b>Upper Chitral leaders reaffirm commitment to interfaith harmony</b><small>Chitral Today</small></a>
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/19/public-transport-violations-in-chitral/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/Accident-1-1.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Transport</span><time>19 Nov 2026</time></span><b>Public transport violations continue despite government orders</b><small>Chitral Today</small></a>
+      <a class="fi k-sport" href="https://chitraltoday.net/2026/11/17/alamgir-ghazi-saff-football-championship/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/Alamgir-.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Football</span><time>17 Nov 2026</time></span><b>Chitral's Alamgir Ghazi shines in SAFF Championship final against India</b><small>Chitral Today</small></a>
+      <a class="fi k-weather" href="https://chitraltoday.net/2026/11/17/sliding-mastuj-road-near-gahlasht-bridge/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/meeting-.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Roads</span><time>17 Nov 2026</time></span><b>Upper Chitral seeks NHA help for sliding road near Gahlasht Bridge</b><small>Chitral Today</small></a>
+      <a class="fi k-sport" href="https://www.cricinfo.com/series/sri-lanka-in-pakistan-2026-27-1550703/pakistan-vs-sri-lanka-2nd-test-1550712/live-cricket-score" target="_blank" rel="noopener"><span class="fimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rawalpindi%20Cricket%20Stadium.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Wikimedia Commons</small></span><span class="fhead"><span class="ft">Cricket · Live</span><time>17–21 Nov 2026</time></span><b>Pakistan vs Sri Lanka 2nd Test under way in Rawalpindi, Aamer Jamal takes 3 for 67</b><small>ESPNcricinfo</small></a>
+      <a class="fi k-sport" href="https://www.dawn.com/news/2045209" target="_blank" rel="noopener"><span class="fimg"><img src="https://i.dawn.com/large/2026/11/17223400fff1b22.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Dawn</small></span><span class="fhead"><span class="ft">Football</span><time>17 Nov 2026</time></span><b>Pakistan lose 2-1 to India in SAFF Championship final after leading at half-time</b><small>Dawn</small></a>
+      <a class="fi k-viral" href="https://chitralnews.com/yomoon-ki-hoi-chetrari-goi-the-annual-winter-exodus-from-chitral/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitralnews.com/wp-content/uploads/2026/11/winter-migration.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral News</small></span><span class="fhead"><span class="ft">Video feature</span><time>15 Nov 2026</time></span><b>"Yomoon Ki Hoi": the annual winter exodus from Chitral, told in Khowar</b><small>Chitral News</small></a>
+      <a class="fi k-weather" href="https://chitraltoday.net/2026/11/14/heavy-snowfall-alert-in-chitral/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/01/snow-Chitral-.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Weather</span><time>14 Nov 2026</time></span><b>Heavy snowfall alert issued for eight KP districts including Chitral</b><small>Chitral Today</small></a>
+      <a class="fi k-sport" href="https://www.cricinfo.com/series/sri-lanka-in-pakistan-2026-27-1550703/pakistan-vs-sri-lanka-1st-test-1550711/match-report" target="_blank" rel="noopener"><span class="fimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rawalpindi%20Cricket%20Stadium.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Wikimedia Commons</small></span><span class="fhead"><span class="ft">Cricket</span><time>13 Nov 2026</time></span><b>Sri Lanka threaten but Pakistan survive as 1st Test ends in a draw</b><small>ESPNcricinfo</small></a>
+      <a class="fi k-weather" href="https://chitraltoday.net/2026/11/11/landslide-hit-road-reopened/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/road-.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">Roads</span><time>11 Nov 2026</time></span><b>Landslide-hit road reopened to traffic</b><small>Chitral Today</small></a>
+      <a class="fi k-news" href="https://chitraltoday.net/2026/11/11/upper-chitral-admin-recovers-215-kanals-of-state-land-launches-uplift-projects/" target="_blank" rel="noopener"><span class="fimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/road.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><small>Photo: Chitral Today</small></span><span class="fhead"><span class="ft">News</span><time>11 Nov 2026</time></span><b>Upper Chitral administration recovers 215 kanals of state land</b><small>Chitral Today</small></a>
+    </div>
+    <p class="note">Newest first. Only stories published in the last 10 days, each with its publish date and source.</p>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Latest News</h2>
+      <p>Short summaries in our own words. Tap the source to read the full report.</p>
+    </div>
+    <div class="news">
+      <article class="story lead"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <span class="tag">Politics</span>
+        <h3>NA-1 Chitral by-election back on the calendar after months of court delays</h3>
+        <p>The Election Commission has set a by-poll for the National Assembly seat covering Upper and Lower Chitral, with polling reported for 23 November. The vote was held up earlier this year when the Peshawar High Court stayed the process. Voters across both districts will finally get to choose a representative after a long stretch without one.</p>
+        <p>Candidates are expected to focus on roads, electricity tariffs and flood protection, the three issues that keep coming up across the valley.</p>
+        <div class="credit">As reported by <a href="https://dailytimes.com.pk/1381509/na-01-chitral-by-polls-on-nov-23/" target="_blank" rel="noopener">Daily Times</a>, <a href="https://www.app.com.pk/?p=1082313" target="_blank" rel="noopener">APP</a> and <a href="https://chitraltoday.net/?p=157516" target="_blank" rel="noopener">Chitral Today</a></div>
+      </article>
+      <article class="story"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Trichmir%20Chitral.JPG?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:View%20of%20Trichmir%20Chitral.JPG" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <span class="tag weather">Weather</span>
+        <h3>Upper Chitral gets the season's first snowfall</h3>
+        <p>Higher villages woke up to white rooftops as winter arrived early. Drivers are advised to check road conditions before heading up the valley.</p>
+        <div class="credit">Source: <a href="https://thepakistanconnect.com/?p=143461" target="_blank" rel="noopener">The Pakistan Connect</a></div>
+      </article>
+      <article class="story"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shahi%20Fort%20Chitral%20KPK%20Pakistan.JPG?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Shahi%20Fort%20Chitral%20KPK%20Pakistan.JPG" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <span class="tag">Community</span>
+        <h3>Residents warn they will block the road over electricity tariffs</h3>
+        <p>Locals say new power tariffs are unfair for a region that produces its own hydropower, and have threatened a protest on the main road.</p>
+        <div class="credit">Source: <a href="https://www.dawn.com/news/2019760" target="_blank" rel="noopener">Dawn</a></div>
+      </article>
+      <article class="story"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kalash%20Valley.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Kalash%20Valley.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <span class="tag">Tech</span>
+        <h3>Kalash valleys get satellite phone and Wi-Fi service</h3>
+        <p>Bumburet and nearby Kalash villages are now connected, a big step for families, students and the guesthouses that rely on bookings.</p>
+        <div class="credit">Sources: <a href="https://www.dawn.com/news/1938993" target="_blank" rel="noopener">Dawn</a>, <a href="https://chitraltoday.net/?p=153805" target="_blank" rel="noopener">Chitral Today</a></div>
+      </article>
+      <article class="story"><div class="cimg"><img src="https://i.dawn.com/large/2026/08/05025010656c3d6.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.dawn.com/news/amp/2020621" target="_blank" rel="noopener">Photo: Dawn</a></div>
+        <span class="tag weather">Disaster</span>
+        <h3>GLOF and cloudburst damage homes and roads</h3>
+        <p>A glacial lake outburst and heavy cloudburst hit parts of the district this summer, cutting links and destroying crops.</p>
+        <div class="credit">Sources: <a href="https://www.dawn.com/news/amp/2020621" target="_blank" rel="noopener">Dawn</a>, <a href="https://tribune.com.pk/story/2623424/cloudburst-ravages-lower-chitral" target="_blank" rel="noopener">Express Tribune</a></div>
+      </article>
+      <article class="story"><div class="cimg"><img src="https://i.dawn.com/large/2026/03/230523255c64e2a.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.dawn.com/news/1984421" target="_blank" rel="noopener">Photo: Dawn</a></div>
+        <span class="tag">Development</span>
+        <h3>Funding gaps slow down Chitral's road projects</h3>
+        <p>Key road schemes are stuck on technical and budget problems, leaving travellers with rough routes for another season.</p>
+        <div class="credit">Source: <a href="https://www.dawn.com/news/1984421" target="_blank" rel="noopener">Dawn</a></div>
+      </article>
+    </div>
+
+    <div class="partner" style="margin-top:28px">
+      <div><span class="label">Partner spot · Hotels</span><br><strong>Find a stay in Chitral town, Bumburet or Booni</strong><p>Affiliate booking link goes here (e.g. Booking.com, Agoda).</p></div>
+      <a class="btn" href="#travel">Compare hotels</a>
+    </div>
+  </div>
+</section>
+
+<div class="viral-wrap">
+<section id="viral">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Viral in Chitral</h2>
+      <p>The posts everyone is sharing, summarised and credited to the page or creator who posted them.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter by platform">
+      <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+      <button type="button" id="f-tt" data-f="tiktok" aria-pressed="false">TikTok</button>
+      <button type="button" id="f-yt" data-f="youtube" aria-pressed="false">YouTube</button>
+      <button type="button" id="f-web" data-f="web" aria-pressed="false">In the news</button>
+    </div>
+    <div class="viral" id="viral-grid">
+      <a class="post" data-p="web" href="https://www.brandsynario.com/blah/viral-video-of-couple-in-chitral-making-roti-together-has-internet-divided/" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--apricot),var(--kalash-1))"><span class="plat">Viral video</span>Roti<img class="pimg" src="https://www.brandsynario.com/wp-content/uploads/2021/10/chitral.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: Brandsynario</small></div>
+        <div class="body"><h3>Chitrali couple making roti together splits the internet</h3><p>A simple kitchen clip of husband and wife baking bread side by side sparked a big debate online.</p><div class="via">As reported by Brandsynario</div></div>
+      </a>
+      <a class="post" data-p="tiktok" href="https://www.tiktok.com/tag/chitrali?lang=en" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,#111,var(--kalash-1))"><span class="plat">TikTok</span>#chitrali<img class="pimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bumburet%20Valley%20in%20Chitral%20District%2C%20Pakistan%201.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: Wikimedia Commons</small></div>
+        <div class="body"><h3>Trending on TikTok: #chitrali</h3><p>Chitrali music, sitar, dance and village life. See the latest clips from local creators.</p><div class="via">Viral on TikTok via #chitrali</div></div>
+      </a>
+      <a class="post" data-p="youtube" href="https://www.youtube.com/watch?v=hoDNn7kHH3c" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--kalash-3),var(--apricot))"><span class="plat">YouTube</span>Polo<img class="pimg" src="https://i.ytimg.com/vi/hoDNn7kHH3c/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: YouTube</small></div>
+        <div class="body"><h3>"Epic Shandur polo battle at 12,000 ft"</h3><p>Highlights from the world's highest polo ground pulled in viewers from across Pakistan.</p><div class="via">Viral on YouTube</div></div>
+      </a>
+      <a class="post" data-p="web" href="https://www.dawn.com/news/1526074" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--glacier),var(--kalash-4))"><span class="plat">Throwback</span>Royal<img class="pimg" src="https://i.dawn.com/large/2020/01/5e0f9615aa1bf.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: Dawn</small></div>
+        <div class="body"><h3>Prince William's photo in Chitral goes viral</h3><p>The royal visit to Chitral produced one of the most shared pictures of the valley ever.</p><div class="via">As reported by Dawn</div></div>
+      </a>
+      <a class="post" data-p="tiktok" href="https://www.tiktok.com/tag/kalash?lang=en" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--kalash-1),var(--kalash-2))"><span class="plat">TikTok</span>#kalash<img class="pimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kalash%20Valley.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: Wikimedia Commons</small></div>
+        <div class="body"><h3>Trending on TikTok: #kalash</h3><p>Festival dances and life in Bumburet, Rumbur and Birir valleys.</p><div class="via">Viral on TikTok via #kalash</div></div>
+      </a>
+      <a class="post" data-p="youtube" href="https://www.youtube.com/watch?v=Kx6L13ZoCAg" target="_blank" rel="noopener">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--hero-near),var(--glacier))"><span class="plat">YouTube</span>2026<img class="pimg" src="https://i.ytimg.com/vi/Kx6L13ZoCAg/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><small class="pcred2">Photo: YouTube</small></div>
+        <div class="body"><h3>Shandur Polo Festival 2026 highlights</h3><p>This year's festival in a few minutes: the final, the crowds and the music.</p><div class="via">Viral on YouTube</div></div>
+      </a>
+    </div>
+    <p class="note">Every card opens the original post or report. We summarise in our own words and always credit the page, creator or publisher.</p>
+  </div>
+</section>
+</div>
+
+<section id="videos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Videos</h2>
+      <p>Hand-picked Chitral videos from YouTube. Each opens on the creator's own channel, so the views go to them.</p>
+    </div>
+    <div class="videos">
+      <a class="vid" href="https://www.youtube.com/watch?v=nQN7I9Ufb-Q" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--glacier),var(--kalash-3))"><img class="vthumb" src="https://i.ytimg.com/vi/nQN7I9Ufb-Q/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Chitral &amp; Kalash Valley in 4K</h3><p>A cinematic documentary across Chitral and the Kalash valleys.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/watch?v=_CDpdWBrGKs" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--kalash-3),var(--apricot))"><img class="vthumb" src="https://i.ytimg.com/vi/_CDpdWBrGKs/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Shandur Polo Festival on the world's highest polo ground</h3><p>Tourists and locals gather at Shandur for the Chitral vs Gilgit final.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/watch?v=H6yoaSQaJtw" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--kalash-1),var(--kalash-2))"><img class="vthumb" src="https://i.ytimg.com/vi/H6yoaSQaJtw/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Kaash Kalash, a KHK film</h3><p>A documentary about Kalash life, faith and festivals.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/watch?v=QHrEt_yFDz0" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--apricot),var(--kalash-1))"><img class="vthumb" src="https://i.ytimg.com/vi/QHrEt_yFDz0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Chitrali dance at Shandur</h3><p>Traditional dance to Chitrali music during the festival.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/watch?v=nZSWLreGbLM" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--ink),var(--glacier))"><img class="vthumb" src="https://i.ytimg.com/vi/nZSWLreGbLM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Night journey through the Lowari Tunnel</h3><p>What the drive into Chitral looks like after dark.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/watch?v=qDSRo7KQiUM" target="_blank" rel="noopener">
+        <div class="screen" style="background:linear-gradient(135deg,var(--kalash-4),var(--glacier))"><img class="vthumb" src="https://i.ytimg.com/vi/qDSRo7KQiUM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="yt">YouTube</span><span class="play"></span></div>
+        <div class="body"><h3>Garam Chashma vlog</h3><p>A trip to the hot springs in the Lutkoh valley.</p><div class="via">Watch on YouTube</div></div>
+      </a>
+    </div>
+    <p class="note">On the published website, hover a video for a silent preview and tap to play it right here. Each video still links to its creator on YouTube.</p>
+  </div>
+</section>
+
+<div class="alt">
+<section id="sports">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Sports</h2>
+      <p>Chitral's own leagues first, then the Pakistan headlines.</p>
+    </div>
+    <div class="sports">
+      <div class="sport-col">
+        <h3>Football <span>CHITRAL</span></h3>
+        <article class="story"><div class="cimg"><img src="https://chitraltoday.net/wp-content/uploads/2026/11/Alamgir-.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://chitraltoday.net/2026/11/17/alamgir-ghazi-saff-football-championship/" target="_blank" rel="noopener">Photo: Chitral Today</a></div>
+          <span class="tag">SAFF Championship · 17 Nov 2026</span>
+          <h3>Chitral's Alamgir Ghazi shines in the SAFF final against India</h3>
+          <p>Pakistan lost the final 2-1, but the Chitrali player's performance had the whole valley talking.</p>
+          <div class="credit">Source: <a href="https://chitraltoday.net/2026/11/17/alamgir-ghazi-saff-football-championship/" target="_blank" rel="noopener">Chitral Today</a></div>
+        </article>
+        <article class="story"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+          <span class="tag">Chitral Football League</span>
+          <h3>Zang Bazar FC beat Pakistan Army and Navy to win the league</h3>
+          <p>The local side knocked out two of the country's strongest departmental teams on the way to the title, a huge night for Chitrali football.</p>
+          <div class="credit">Source: <a href="https://propakistani.pk/2026/09/21/zang-bazar-fc-beats-pakistan-army-and-pakistan-navy-to-win-chitral-football-league/" target="_blank" rel="noopener">ProPakistani</a></div>
+        </article>
+        <article class="story"><div class="cimg"><img src="https://i.dawn.com/large/2025/04/680c0afc9e309.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.dawn.com/news/1906591" target="_blank" rel="noopener">Photo: Dawn</a></div>
+          <span class="tag">Polo</span>
+          <h3>Qaqlasht festival closes with polo and crowds</h3>
+          <p>The weeklong spring festival near Booni ended with polo matches, games and music drawing big crowds.</p>
+          <div class="credit">Source: <a href="https://www.dawn.com/news/1906591" target="_blank" rel="noopener">Dawn</a></div>
+        </article>
+      </div>
+      <div class="sport-col">
+        <h3>Cricket <span>PAKISTAN</span></h3>
+        <article class="story"><div class="cimg"><img src="https://i.tribune.com.pk/media/images/pg12-lead1794046235-0/pg12-lead1794046235-0-640x480.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://tribune.com.pk/story/2639128/pakistan-add-four-players-to-test-squad-for-sri-lanka-series" target="_blank" rel="noopener">Photo: Express Tribune</a></div>
+          <span class="tag">Test cricket</span>
+          <h3>Pakistan add four players to Test squad for Sri Lanka series</h3>
+          <p>Selectors have refreshed the Test side ahead of the home series against Sri Lanka, with new faces brought in.</p>
+          <div class="credit">Sources: <a href="https://tribune.com.pk/story/2639128/pakistan-add-four-players-to-test-squad-for-sri-lanka-series" target="_blank" rel="noopener">Express Tribune</a>, <a href="https://propakistani.pk/2026/11/04/pakistan-set-for-major-test-team-shake-up-ahead-of-sri-lanka-series/" target="_blank" rel="noopener">ProPakistani</a></div>
+        </article>
+        <article class="story"><div class="cimg"><img src="https://www.wisden.com/static-assets/waf-images/46/13/76/16-9/V54WKJW8gG.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.wisden.com/series/pakistan-vs-sri-lanka-m-2026/cricket-news/pak-vs-sl-tests-2026-all-you-need-to-know-full-schedule-squads-venues-and-match-timings" target="_blank" rel="noopener">Photo: Wisden</a></div>
+          <span class="tag">Schedule</span>
+          <h3>Pakistan vs Sri Lanka Tests: dates, venues and timings</h3>
+          <p>Everything you need for the series, from squads to match start times in Pakistan time.</p>
+          <div class="credit">Source: <a href="https://www.wisden.com/series/pakistan-vs-sri-lanka-m-2026/cricket-news/pak-vs-sl-tests-2026-all-you-need-to-know-full-schedule-squads-venues-and-match-timings" target="_blank" rel="noopener">Wisden</a></div>
+        </article>
+      </div>
+    </div>
+  
+    <div class="fbwall">
+      <div class="fbhead"><h3>Football updates from Facebook</h3><p>Latest photos and videos as shared by <a href="https://www.facebook.com/p/Chitral-football-league-61565208039147/" target="_blank" rel="noopener">Chitral Football League</a> on Facebook. Every post stays credited to whoever shared it.</p></div>
+      <div class="fbframe" data-fb="https://www.facebook.com/p/Chitral-football-league-61565208039147/">
+        <a class="fbfallback" href="https://www.facebook.com/p/Chitral-football-league-61565208039147/" target="_blank" rel="noopener"><span class="fbicon">f</span><span><b>Chitral Football League on Facebook</b><small>Match clips, photos and results, as shared by the league. Tap to open.</small></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="careers">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Careers in Chitral</h2>
+      <p>Recently advertised openings. Always check the last date and apply through the official advert.</p>
+    </div>
+    <div class="jobs">
+      <div class="job"><div><b>Medical &amp; paramedical staff</b><small>Office of the District Health Officer, Upper Chitral</small><div class="meta"><span>Government</span><span>Health</span></div></div><a class="btn" href="https://www.eduvision.edu.pk/edu_news/office-of-the-district-health-officer-chitral-upper-medical-paramedical-jobs-jn-6970" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>Administration staff</b><small>District &amp; Sessions Judge, Upper Chitral</small><div class="meta"><span>Government</span><span>Courts</span></div></div><a class="btn" href="https://www.eduvision.edu.pk/edu_news/office-of-the-district-session-judge-upper-chitral-administration-jobs-jn-6989" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>Assistant (BPS-16)</b><small>Chitral · listed on Rozee.pk</small><div class="meta"><span>Government</span><span>Office</span></div></div><a class="btn" href="https://www.rozee.pk/assistant-bps-16-chitral-jobs-1918063" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>Stenographer (BPS-14) and Junior Clerk (BPS-11)</b><small>Chitral · listed on Rozee.pk</small><div class="meta"><span>Government</span><span>Clerical</span></div></div><a class="btn" href="https://www.rozee.pk/stenotypist-stenographer-bps-14-chitral-jobs-1918065" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>Clinical technicians (BPS-12): surgical, pathology, radiology, pharmacy</b><small>Chitral · listed on Rozee.pk</small><div class="meta"><span>Government</span><span>Health</span></div></div><a class="btn" href="https://www.rozee.pk/ct-surgical-bps-12-chitral-jobs-1910932" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>Nutrition Officer</b><small>AKRSP · Karimabad, Lower Chitral</small><div class="meta"><span>NGO</span><span>Health</span></div></div><a class="btn" href="https://akrsp.org.pk/career/nutrition-officer-lower-chitral-karimabad/" target="_blank" rel="noopener">View advert</a></div>
+      <div class="job"><div><b>More jobs in Chitral</b><small>University of Chitral and private listings</small><div class="meta"><span>Browse</span></div></div><a class="btn ghost" href="https://www.mustakbil.com/jobs/pakistan/chitral" target="_blank" rel="noopener">Browse all</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="alt">
+<section id="success">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Success Stories</h2>
+      <p>Chitralis making history. Know someone who belongs here? Tell us.</p>
+    </div>
+    <div class="wins">
+      <article class="win"><div class="cimg"><img src="https://simerg.com/wp-content/uploads/2024/03/suriya-bibi-portrait.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://simerg.com/2024/03/24/suriya-bibi-achieves-milestone-by-becoming-first-woman-in-pakistans-chitral-district-to-secure-a-seat-in-the-provincial-assembly-through-a-direct-election/" target="_blank" rel="noopener">Photo: Simerg</a></div><span class="big">Politics</span><h3>Suriya Bibi, first Chitrali woman elected directly to the KP Assembly</h3><p>She won a general seat in 2024, a first for the district.</p><div class="credit">Source: <a href="https://simerg.com/2024/03/24/suriya-bibi-achieves-milestone-by-becoming-first-woman-in-pakistans-chitral-district-to-secure-a-seat-in-the-provincial-assembly-through-a-direct-election/" target="_blank" rel="noopener">Simerg</a></div></article>
+      <article class="win"><div class="cimg"><img src="https://i.tribune.com.pk/media/images/738510-Tirich_Mir_Ho_1735544352/738510-Tirich_Mir_Ho_1735544352-640x480.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://tribune.com.pk/story/2561475/women-trekkers-make-history-at-tirich-mir" target="_blank" rel="noopener">Photo: Express Tribune</a></div><span class="big">Mountaineering</span><h3>Women trekkers make history at Tirich Mir</h3><p>A women's team reached new heights on the Hindu Kush's highest mountain.</p><div class="credit">Source: <a href="https://tribune.com.pk/story/2561475/women-trekkers-make-history-at-tirich-mir" target="_blank" rel="noopener">Express Tribune</a></div></article>
+      <article class="win"><div class="cimg"><img src="https://chitraltoday.net/wp-content/uploads/2025/08/ctn-e1763394996855.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://chitraltoday.net/?p=147256" target="_blank" rel="noopener">Photo: Chitral Today</a></div><span class="big">Science</span><h3>Faiza Qadeer of Barenis wins a Marie Curie PhD scholarship</h3><p>One of Europe's most competitive research awards goes to a young scientist from Lower Chitral.</p><div class="credit">Source: <a href="https://chitraltoday.net/?p=147256" target="_blank" rel="noopener">Chitral Today</a></div></article>
+      <article class="win"><div class="cimg"><img src="https://assets.maestronewsroom.com/media/5dd7c4a4-a961-498c-8029-59f9255b4c95/arabnews-import/2021/05/proxy/2620281-1652550624.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.arabnews.pk/node/1859411" target="_blank" rel="noopener">Photo: Arab News</a></div><span class="big">Policing</span><h3>Chitral's first woman police officer</h3><p>Her story of joining the force in a remote mountain district inspired many young women.</p><div class="credit">Source: <a href="https://www.arabnews.pk/node/1859411" target="_blank" rel="noopener">Arab News</a></div></article>
+      <article class="win"><div class="cimg"><img src="https://i.dawn.com/large/2025/08/6893dd57f000a.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://www.dawn.com/news/1929165/chitrals-local-group-summits-thalo-zom-peak" target="_blank" rel="noopener">Photo: Dawn</a></div><span class="big">Climbing</span><h3>Local Chitrali team summits Thalo Zom</h3><p>A home-grown group of climbers reached the top of the peak, showing local talent can lead expeditions.</p><div class="credit">Source: <a href="https://www.dawn.com/news/1929165/chitrals-local-group-summits-thalo-zom-peak" target="_blank" rel="noopener">Dawn</a></div></article>
+      <article class="win"><div class="cimg"><img src="https://i.tribune.com.pk/media/images/2119583-fotojet-1576564566/2119583-fotojet-1576564566-640x480.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://tribune.com.pk/story/2119583/chitrali-woman-made-waves-milan-fashion-week" target="_blank" rel="noopener">Photo: Express Tribune</a></div><span class="big">Fashion</span><h3>A Chitrali designer at Milan Fashion Week</h3><p>Chitral's craft and colours reached one of the world's biggest fashion stages.</p><div class="credit">Source: <a href="https://tribune.com.pk/story/2119583/chitrali-woman-made-waves-milan-fashion-week" target="_blank" rel="noopener">Express Tribune</a></div></article>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="opinion">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Opinion</h2>
+      <p>Views from the valley. Opinions belong to the writers.</p>
+    </div>
+    <div class="ops">
+      <article class="op main"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Garam%20Chashma.JPG?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Garam%20Chashma.JPG" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div><span class="label">Editorial</span><h3>Chitral makes the power. Chitral should not pay the highest price for it.</h3><p>Hydropower plants dot our rivers, yet families face rising bills and long outages every winter. A fair tariff for the district that produces the electricity is not a favour. It is common sense, and our next representative should make it their first fight.</p><span class="by">CHITRAL PULSE DESK</span></article>
+      <article class="op"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kalash%20Valley.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Kalash%20Valley.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div><span class="label">Tourism</span><h3>Visit the Kalash, but leave the camera down sometimes</h3><p>Tourists are welcome. Treating a living culture like a photo set is not. A simple guide to visiting with respect.</p><span class="by">GUEST WRITER · SAMPLE</span></article>
+      <article class="op"><div class="cimg"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shandur%2C%20Roof%20of%20the%20world.jpg?width=700" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Shandur%2C%20Roof%20of%20the%20world.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div><span class="label">Development</span><h3>Roads decide everything here</h3><p>Schools, hospitals and markets all depend on roads that stay open. Stalled projects cost more than money.</p><span class="by">GUEST WRITER · SAMPLE</span></article>
+    </div>
+    <div class="partner write">
+      <div><span class="label">Write for Chitral Pulse</span><br><strong>Have something to say about Chitral?</strong><p>Send us your opinion piece in English. We publish under your name.</p></div>
+      <a class="btn" href="#opinion">Submit a piece</a>
+    </div>
+  </div>
+</section>
+
+<div class="alt">
+<section id="hotels">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Book a Hotel</h2>
+      <p>Hand-picked stays in Chitral, the Kalash valleys and Islamabad. Contact hotels directly by phone or on their own website.</p>
+    </div>
+
+    <div class="htabs" role="tablist" aria-label="City">
+      <button type="button" role="tab" id="tab-chitral" aria-selected="true" aria-controls="h-chitral">Chitral &amp; Kalash</button>
+      <button type="button" role="tab" id="tab-isb" aria-selected="false" aria-controls="h-isb">Islamabad</button>
+    </div>
+    <div class="hotels" id="h-chitral" role="tabpanel" aria-labelledby="tab-chitral">
+      <article class="hotel"><div class="hbody"><span class="label">Chitral · near airport</span><h3>Hindu Kush Heights</h3><p>Hilltop hotel with views of Tirich Mir, the best-known upscale stay in Chitral.</p><div class="facts"><span>Mountain views</span><span>Restaurant</span><span>Garden</span></div></div><div class="price"><b>Rs 25,500 – 49,500</b> <span>per night</span><small>Approx. price from hotel website. Confirm with the hotel.</small></div><div class="hact"><a class="btn" href="http://hindukushheights.com" target="_blank" rel="noopener">Visit website</a></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Chitral town</span><h3>The Mountain Inn</h3><p>A long-running classic in the town centre, with a shady garden and easy bazaar access.</p><div class="facts"><span>Central</span><span>Garden</span><span>Family rooms</span></div></div><div class="price"><b>from about US$46</b> <span>per night</span><small>Approx. price from Kayak, Nov 2026. Confirm with the hotel.</small></div><div class="hact"><span class="nocontact">Contact details coming soon</span></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Ayun · gateway to Kalash</span><h3>Ayun Fort Inn</h3><p>A heritage fort home turned guesthouse, run by Chitral's old royal family.</p><div class="facts"><span>Heritage</span><span>Orchards</span><span>Quiet</span></div></div><div class="price"><b>about Rs 17,500</b> <span>per night</span><small>Approx. price from Porter Pakistan. Confirm with the hotel.</small></div><div class="hact"><span class="nocontact">Contact details coming soon</span></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Chitral town</span><h3>PTDC Motel Chitral</h3><p>Government-run motel. Simple, reliable and good value.</p><div class="facts"><span>Budget</span><span>Parking</span><span>Central</span></div></div><div class="price none"><b>Rates on request</b><small>No reliable public price yet. Ask the hotel.</small></div><div class="hact"><span class="nocontact">Contact details coming soon</span></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Bumburet · Kalash Valley</span><h3>PTDC Motel Bumburet</h3><p>Stay right inside the Kalash valley, close to the villages and festivals.</p><div class="facts"><span>Kalash Valley</span><span>Budget</span><span>Riverside</span></div></div><div class="price none"><b>Rates on request</b><small>No reliable public price yet. Ask the hotel.</small></div><div class="hact"><a class="btn ghost tel" href="tel:0933490003">Call <span class="num">0933-490003</span></a><span class="aff">Usually closed 1 Nov to 15 Mar.</span></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Bumburet · Kalash Valley</span><h3>Tourist Guest House</h3><p>A small family guesthouse on the Bumburet valley road.</p><div class="facts"><span>Guesthouse</span><span>Local food</span><span>Budget</span></div></div><div class="price none"><b>Rates on request</b><small>No reliable public price yet. Ask the hotel.</small></div><div class="hact"><span class="nocontact">Contact details coming soon</span></div></article>
+    </div>
+    <div class="hotels" id="h-isb" role="tabpanel" aria-labelledby="tab-isb" hidden>
+      <article class="hotel"><div class="hbody"><span class="label">Diplomatic area</span><h3>Islamabad Serena Hotel</h3><p>Five-star landmark with gardens and fine dining.</p><div class="facts"><span>Luxury</span><span>Pool</span><span>Spa</span></div></div><div class="price"><b>Rs 28,000 – 43,500</b> <span>per night, taxes incl.</span><small>Approx. price from Apricot Tours. Confirm with the hotel.</small></div><div class="hact"><a class="btn" href="https://www.serenahotels.com/islamabad" target="_blank" rel="noopener">Visit website</a><a class="btn ghost tel" href="tel:+92512874000">Call <span class="num">+92 51 287 4000</span></a></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Aga Khan Road</span><h3>Islamabad Marriott Hotel</h3><p>Central five-star hotel, a popular stop before flying to Chitral.</p><div class="facts"><span>Luxury</span><span>Pool</span><span>Airport transfer</span></div></div><div class="price"><b>Rs 20,000 – 40,000</b> <span>per night, standard rooms</span><small>Approx. price from Trips.pk. Confirm with the hotel.</small></div><div class="hact"><a class="btn ghost tel" href="tel:+92512826121">Call <span class="num">+92 51 282 6121</span></a></div></article>
+      <article class="hotel"><div class="hbody"><span class="label">Near Islamabad Expressway</span><h3>Ramada by Wyndham Islamabad</h3><p>Comfortable four-star hotel with large rooms.</p><div class="facts"><span>4-star</span><span>Pool</span><span>Parking</span></div></div><div class="price"><b>Rs 18,000 – 38,700</b> <span>per night, taxes incl.</span><small>Approx. price from Apricot Tours 2026-27. Confirm with the hotel.</small></div><div class="hact"><a class="btn ghost tel" href="tel:+9251111379379">Call <span class="num">051 111 379 379</span></a></div></article>
+    </div>
+
+    <div class="partner" style="margin-top:24px">
+      <div><span class="label">For guesthouse owners</span><br><strong>Run a guesthouse in Chitral that isn't online?</strong><p>List it here with a "Book on WhatsApp" button so travellers can reach you directly.</p></div>
+      <a class="btn" href="#directory">List your guesthouse</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="travel">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Travel Chitral</h2>
+      <p>Practical guides to the places people ask about most.</p>
+    </div>
+    <div class="travel">
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--kalash-1)"/><rect y="40" width="300" height="14" fill="var(--kalash-2)"/><rect y="60" width="300" height="10" fill="var(--kalash-3)"/><rect y="76" width="300" height="14" fill="var(--kalash-4)"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bumburet%20Valley%20in%20Chitral%20District%2C%20Pakistan%201.jpg?width=800" alt="Kalash Valleys" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Bumburet%20Valley%20in%20Chitral%20District%2C%20Pakistan%201.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Kalash Valleys</h3>
+          <div class="facts"><span>Bumburet · Rumbur · Birir</span><span>~1.5 hr from Chitral</span></div>
+          <p>Home of the Kalash people, with wooden villages, walnut trees and festivals open to respectful visitors. Plan around Chilam Joshi in mid-May, Uchal in August or Chawmos in December. Always ask before taking photos.</p>
+          <div class="aff"><a href="#viral">Guesthouses · partner</a><a href="#viral">Festival tours · partner</a></div>
+        </div>
+      </article>
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--hero-sky)"/><ellipse cx="150" cy="96" rx="130" ry="18" fill="var(--kalash-3)"/><ellipse cx="240" cy="96" rx="40" ry="8" fill="var(--glacier)"/><polygon points="0,90 60,40 120,85 180,30 240,80 300,50 300,90" fill="var(--hero-far)"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shandur%20Polo%20ground%202016.jpg?width=800" alt="Shandur Pass" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Shandur%20Polo%20ground%202016.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Shandur Pass</h3>
+          <div class="facts"><span>~3,700 m</span><span>Polo festival: early July</span></div>
+          <p>Known as the highest polo ground in the world, where Chitral and Gilgit teams face off each summer. Nights are cold even in July, so bring warm layers. Camping spots and tents book out fast during festival week.</p>
+          <div class="aff"><a href="#travel">Camping packages · partner</a></div>
+        </div>
+      </article>
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--glacier)"/><polygon points="40,120 150,15 260,120" fill="var(--hero-far)"/><polygon points="150,15 185,50 165,46 150,58 135,46 115,50" fill="var(--snow)"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg?width=800" alt="Tirich Mir" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:The%20City%20of%20Chitral%20and%20Tirich%20Mir.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Tirich Mir</h3>
+          <div class="facts"><span>7,708 m</span><span>Highest in the Hindu Kush</span></div>
+          <p>Visible from Chitral town on clear days. Summit expeditions need permits and a licensed operator, but trekkers can reach viewpoints and base areas through the Tirich valley with a local guide.</p>
+          <div class="aff"><a href="#travel">Trekking operators · partner</a></div>
+        </div>
+      </article>
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--apricot-soft)"/><rect x="90" y="40" width="120" height="70" fill="var(--apricot)"/><rect x="80" y="30" width="30" height="80" fill="var(--hero-near)"/><rect x="190" y="30" width="30" height="80" fill="var(--hero-near)"/><path d="M0,112 C80,100 220,120 300,108 L300,120 L0,120 Z" fill="var(--glacier)"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shahi%20Mosque%2C%20Chitral.jpg?width=800" alt="Chitral Town" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Shahi%20Mosque%2C%20Chitral.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Chitral Town</h3>
+          <div class="facts"><span>Fort · Shahi Mosque</span><span>Polo ground</span></div>
+          <p>Start here: walk the riverside Chitral Fort and the white Shahi Mosque, then try local food in the bazaar. It is the base for every valley trip and has the most hotels and transport options.</p>
+          <div class="aff"><a href="#news">Hotels in town · partner</a></div>
+        </div>
+      </article>
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--glacier-soft)"/><circle cx="90" cy="70" r="26" fill="var(--glacier)" opacity=".5"/><circle cx="150" cy="60" r="34" fill="var(--glacier)" opacity=".4"/><circle cx="210" cy="74" r="22" fill="var(--glacier)" opacity=".55"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Garam%20Chashma.JPG?width=800" alt="Garam Chashma" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Garam%20Chashma.JPG" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Garam Chashma</h3>
+          <div class="facts"><span>Hot springs</span><span>~45 km from town</span></div>
+          <p>Natural hot springs in the Lutkoh valley, popular for a relaxing day trip, especially in spring and autumn. Trout from the local streams is the meal to order.</p>
+          <div class="aff"><a href="#travel">Day trip · partner</a></div>
+        </div>
+      </article>
+      <article class="guide">
+        <div class="artbox"><svg class="art" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="120" fill="var(--kalash-3)"/><polygon points="0,120 70,50 130,120" fill="var(--hero-near)"/><polygon points="100,120 190,35 280,120" fill="var(--hero-near)"/><circle cx="230" cy="88" r="5" fill="var(--apricot)"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meadows%20of%20Chitral%20Gol%20National%20Park%3B%20Tahsin%20Shah%2003.jpg?width=800" alt="Chitral Gol National Park" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Meadows%20of%20Chitral%20Gol%20National%20Park%3B%20Tahsin%20Shah%2003.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></div>
+        <div class="body">
+          <h3>Chitral Gol National Park</h3>
+          <div class="facts"><span>Markhor habitat</span><span>Best: winter mornings</span></div>
+          <p>One of the best places to see the markhor, Pakistan's national animal. Winter pushes the herds lower, so sightings are easier from November to March with a ranger or guide.</p>
+          <div class="aff"><a href="#travel">Wildlife guide · partner</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="season" id="season">
+      <h3>Best time to visit</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Place</th><th>JAN</th><th>FEB</th><th>MAR</th><th>APR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AUG</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DEC</th></tr></thead>
+          <tbody>
+            <tr><td>Kalash Valleys</td><td class="c1">·</td><td class="c1">·</td><td class="c2">ok</td><td class="c2">ok</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c2">ok</td><td class="c2">ok</td><td class="c2">fest</td></tr>
+            <tr><td>Shandur Pass</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td><td class="c2">ok</td><td class="c3">best</td><td class="c3">best</td><td class="c2">ok</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td></tr>
+            <tr><td>Chitral Town</td><td class="c2">ok</td><td class="c2">ok</td><td class="c2">ok</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c2">ok</td><td class="c2">ok</td></tr>
+            <tr><td>Tirich valley treks</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td><td class="c2">ok</td><td class="c3">best</td><td class="c3">best</td><td class="c3">best</td><td class="c2">ok</td><td class="c1">·</td><td class="c1">·</td><td class="c1">·</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legend"><span><i style="background:var(--kalash-3)"></i>Best</span><span><i style="background:var(--kalash-2)"></i>Possible / festival</span><span><i style="background:var(--line)"></i>Closed or not advised</span></div>
+    </div>
+
+    <div class="gear">
+      <div><span class="label">Gear · partner</span><b>Down jacket</b><small>Needed above 3,000 m, even in summer</small></div>
+      <div><span class="label">Gear · partner</span><b>Hiking boots</b><small>For Tirich and Kalash trails</small></div>
+      <div><span class="label">Gear · partner</span><b>Power bank</b><small>Long drives, patchy electricity</small></div>
+      <div><span class="label">Gear · partner</span><b>Local SIM / eSIM</b><small>Coverage drops in high valleys</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="alt">
+<section id="culture">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Culture &amp; Festivals</h2>
+      <p>The dates people plan their trips around. Exact days shift each year, so check before you travel.</p>
+    </div>
+    <div class="fest">
+      <div><span class="when">Mid-May</span><b>Chilam Joshi</b><p>The Kalash spring festival, with days of dancing, songs and milk offerings.</p></div>
+      <div><span class="when">Spring</span><b>Qaqlasht</b><p>A traditional spring festival on the Qaqlasht plain near Booni, with polo and music.</p></div>
+      <div><span class="when">Early July</span><b>Shandur Polo</b><p>Chitral and Gilgit teams meet at the top of the pass for freestyle polo.</p></div>
+      <div><span class="when">August</span><b>Uchal</b><p>The Kalash harvest festival, celebrating summer pastures and the wheat crop.</p></div>
+      <div><span class="when">December</span><b>Chawmos</b><p>The Kalash winter solstice festival, the most sacred of the year. Some days are closed to visitors.</p></div>
+    </div>
+
+    <div class="food">
+      <div style="grid-column:1/-1;padding:0;background:none"><h3 class="sub" id="food">Chitrali food to try</h3></div>
+      <div><span class="fpic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#f6e3c8"/><ellipse cx="100" cy="72" rx="80" ry="30" fill="#c9a77c"/><ellipse cx="100" cy="66" rx="66" ry="24" fill="#e3a65a"/><ellipse cx="100" cy="62" rx="58" ry="19" fill="#f0bd72"/><path d="M60 60q40-14 80 0" stroke="#b9742f" stroke-width="3" fill="none"/><path d="M68 70q32 10 64 0" stroke="#b9742f" stroke-width="2" fill="none" opacity=".6"/><path d="M70 62l10-5m10 5l10-5m10 5l10-5m10 5l10-5" stroke="#8a4d1d" stroke-width="2"/></svg></span><b>Shuplik</b><i>Baked bread</i><p>Bread stuffed with spiced minced meat, made for guests and celebrations.</p></div>
+      <div><span class="fpic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#efe6d4"/><ellipse cx="100" cy="80" rx="82" ry="22" fill="#2b5ea8" opacity=".25"/><ellipse cx="100" cy="74" rx="70" ry="18" fill="#e9d2a6"/><ellipse cx="100" cy="68" rx="70" ry="18" fill="#fff4dc"/><ellipse cx="100" cy="62" rx="70" ry="18" fill="#e9c98f"/><ellipse cx="100" cy="56" rx="70" ry="18" fill="#f7e7c4"/><g fill="#7a4a24"><circle cx="80" cy="54" r="4"/><circle cx="104" cy="50" r="3.5"/><circle cx="122" cy="58" r="4"/><circle cx="94" cy="60" r="3"/></g><g fill="#fff"><rect x="68" y="58" width="8" height="5" rx="1"/><rect x="112" y="52" width="8" height="5" rx="1"/></g></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ghalmandi.jpg?width=600" alt="Ghalmandi" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Ghalmandi.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></span><b>Ghalmandi</b><i>Layered bread</i><p>Thin bread layered with local cheese, walnuts or butter.</p></div>
+      <div><span class="fpic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#dcebf2"/><ellipse cx="100" cy="66" rx="86" ry="36" fill="#fff"/><ellipse cx="100" cy="66" rx="76" ry="30" fill="#f2f2ee"/><path d="M40 66q30-26 90-8l20-14-4 22 4 22-20-14q-60 18-90-8z" fill="#c98a3c"/><path d="M50 64q30-16 76-4" stroke="#8a5a20" stroke-width="2" fill="none"/><circle cx="52" cy="62" r="3" fill="#2a1a0a"/><g fill="#8a5a20"><circle cx="78" cy="58" r="1.6"/><circle cx="92" cy="64" r="1.6"/><circle cx="106" cy="58" r="1.6"/></g><path d="M140 90l10-6 6 4-12 6z" fill="#f1d34a"/><circle cx="60" cy="88" r="5" fill="#3a8a3a"/><circle cx="70" cy="92" r="4" fill="#4aa04a"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20Fish.JPG?width=600" alt="River trout" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Fried%20Fish.JPG" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></span><b>River trout</b><i>Garam Chashma, Bumburet</i><p>Fresh trout from the cold mountain streams, fried simply.</p></div>
+      <div><span class="fpic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#f4e7d6"/><path d="M30 60h140q-6 44-70 44T30 60z" fill="#8a5a3a"/><ellipse cx="100" cy="60" rx="70" ry="12" fill="#6e452b"/><g fill="#f29a2e"><ellipse cx="70" cy="54" rx="11" ry="8"/><ellipse cx="96" cy="50" rx="11" ry="8"/><ellipse cx="124" cy="54" rx="11" ry="8"/><ellipse cx="84" cy="60" rx="10" ry="7"/></g><g fill="#c47b24"><circle cx="110" cy="60" r="7"/><circle cx="138" cy="60" r="6"/></g><g fill="#5a2e3e"><ellipse cx="58" cy="60" rx="5" ry="7"/><ellipse cx="148" cy="52" rx="5" ry="7"/></g><path d="M66 52q4 4 8 0M92 48q4 4 8 0M120 52q4 4 8 0" stroke="#c46a10" stroke-width="1.5" fill="none"/></svg><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apricot%20Tree%20-%20Hunza%20Valley.jpg?width=600" alt="Apricots drying" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Apricot%20Tree%20-%20Hunza%20Valley.jpg" target="_blank" rel="noopener">Photo: Wikimedia Commons</a></span><b>Dried fruit</b><i>Apricot, mulberry, walnut</i><p>Chitral's sun-dried apricots and mulberries are what visitors take home.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="roads">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Roads &amp; Weather</h2>
+      <p>Status board for the routes travellers ask about. Demo values, updated by hand on the live site.</p>
+    </div>
+    <div class="roads">
+      <div class="road"><div><b>Lowari Tunnel</b><small>Dir to Chitral, the main way in</small></div><span class="pill open">Open</span></div>
+      <div class="road"><div><b>Chitral to Kalash valleys</b><small>Ayun road to Bumburet and Rumbur</small></div><span class="pill open">Open</span></div>
+      <div class="road"><div><b>Chitral to Booni and Mastuj</b><small>Upper Chitral road</small></div><span class="pill warn">Snow, drive with care</span></div>
+      <div class="road"><div><b>Shandur Pass</b><small>To Gilgit-Baltistan</small></div><span class="pill shut">Closed for winter</span></div>
+      <div class="road"><div><b>Flights to Chitral</b><small>Islamabad to Chitral airport</small></div><span class="pill warn">Weather dependent</span></div>
+      <div class="road"><div><b>Chitral town today</b><small>Cold, clear mornings</small></div><span class="pill open">Good to travel</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="alt">
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Shop Chitral</h2>
+      <p>Local products, ready for affiliate or seller links.</p>
+    </div>
+    <div class="shop">
+      <div class="item"><div class="sw" style="background:linear-gradient(135deg,var(--apricot),var(--kalash-2))"></div><span class="label">Dry fruits</span><b>Sun-dried apricots</b><p>Sweet Chitrali apricots, dried on rooftops.</p><a class="btn" href="#shop">Buy · partner link</a></div>
+      <div class="item"><div class="sw" style="background:linear-gradient(135deg,var(--hero-near),var(--ink))"></div><span class="label">Dry fruits</span><b>Walnuts &amp; mulberries</b><p>Hand-picked from valley orchards.</p><a class="btn" href="#shop">Buy · partner link</a></div>
+      <div class="item"><div class="sw" style="background:linear-gradient(135deg,#8a6f55,#c9b59a);position:relative;overflow:hidden"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chitrali%20Cap.JPG?width=500" alt="Chitrali pakol" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><span class="label">Clothing</span><b>Chitrali pakol &amp; patti</b><p>The famous wool cap and handwoven wool cloth.</p><a class="btn" href="#shop">Buy · partner link</a></div>
+      <div class="item"><div class="sw" style="background:repeating-linear-gradient(90deg,var(--kalash-1) 0 14px,var(--kalash-2) 14px 22px,var(--kalash-3) 22px 32px,var(--kalash-4) 32px 40px)"></div><span class="label">Crafts</span><b>Kalash embroidery</b><p>Handmade pieces bought from Kalash artisans.</p><a class="btn" href="#shop">Buy · partner link</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="directory">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Local Directory</h2>
+      <p>A place for Chitral businesses to be listed. Featured spots can be paid listings.</p>
+    </div>
+    <div class="dir">
+      <div><span class="label">Stay</span><b>Hotels &amp; guesthouses</b><p>Chitral town, Bumburet, Booni, Mastuj.</p><a class="btn ghost" href="#directory">List your hotel</a></div>
+      <div><span class="label">Travel</span><b>Drivers &amp; tour guides</b><p>Jeep hire, trekking guides and porters.</p><a class="btn ghost" href="#directory">List your service</a></div>
+      <div><span class="label">Eat</span><b>Restaurants &amp; cafes</b><p>Where to eat in the bazaar and valleys.</p><a class="btn ghost" href="#directory">List your restaurant</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="band" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Chitral Pulse</h4>
+      <p>News, viral moments and travel guides from Chitral. We summarise in our own words and always name and link the original source. Affiliate links help keep the site running at no extra cost to you.</p>
+    </div>
+    <div>
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#news">Latest News</a></li>
+        <li><a href="#viral">Viral</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#sports">Sports</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#success">Success stories</a></li>
+        <li><a href="#opinion">Opinion</a></li>
+        <li><a href="#travel">Travel guides</a></li>
+        <li><a href="#culture">Culture &amp; food</a></li>
+        <li><a href="#roads">Roads &amp; weather</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#directory">Local directory</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="tohome off" id="tohome" aria-label="Back to home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Home</a>
+
+<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="pbox" id="pbox">
+    <div class="pbar"><b id="ptitle"></b><button type="button" class="pclose" id="pclose">Close ✕</button></div>
+    <div class="pframe" id="pframe"></div>
+    <div class="pbar"><span id="pcredit"></span><a id="plink" href="#" target="_blank" rel="noopener">Watch on YouTube</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var posts=document.querySelectorAll('#viral-grid .post');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-f');
+    btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    posts.forEach(function(p){p.hidden=!(f==='all'||p.getAttribute('data-p')===f)});
+  })});
+  var ab=document.getElementById('allbtn'),ag=document.getElementById('allgrid');
+  ab.addEventListener('click',function(e){e.stopPropagation();var o=ag.hidden;ag.hidden=!o;ab.setAttribute('aria-expanded',o?'true':'false')});
+  document.addEventListener('click',function(e){if(!ag.hidden&&!ag.contains(e.target)){ag.hidden=true;ab.setAttribute('aria-expanded','false')}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){ag.hidden=true;ab.setAttribute('aria-expanded','false')}});
+  ag.querySelectorAll('a').forEach(function(x){x.addEventListener('click',function(){ag.hidden=true;ab.setAttribute('aria-expanded','false')})});
+  // Inline player: on the real website (top-level page) YouTube clips play right here.
+  // Inside the preview frame embeds are blocked, so links open YouTube as normal.
+  var canEmbed=(window.self===window.top);
+  if(canEmbed){document.querySelectorAll('.fbframe').forEach(function(b){var w=Math.min(500,b.clientWidth||500);var f=document.createElement('iframe');f.src='https://www.facebook.com/plugins/page.php?href='+encodeURIComponent(b.dataset.fb)+'&tabs=timeline&width='+w+'&height=620&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false';f.loading='lazy';f.title='Chitral Football League on Facebook';f.allow='encrypted-media; picture-in-picture; web-share';b.innerHTML='';b.appendChild(f);});}
+
+  var pl=document.getElementById('player'),pf=document.getElementById('pframe'),pb=document.getElementById('pbox');
+  function ytid(h){var m=/[?&]v=([\w-]{11})/.exec(h);return m?m[1]:null}
+  function closeP(){pl.hidden=true;pf.innerHTML='';document.body.style.overflow=''}
+  document.getElementById('pclose').addEventListener('click',closeP);
+  pl.addEventListener('click',function(e){if(e.target===pl)closeP()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pl.hidden)closeP()});
+  document.querySelectorAll('a.reel,a.vid').forEach(function(a){
+    var id=ytid(a.href);if(!id||!canEmbed)return;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=a.querySelector('b,h3');document.getElementById('ptitle').textContent=t?t.textContent:'';
+      var c=a.querySelector('.rplat,.via');document.getElementById('pcredit').textContent=c?c.textContent:'';
+      document.getElementById('plink').href=a.href;
+      pb.classList.toggle('tall',a.classList.contains('reel')&&false);
+      pf.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video player"></iframe>';
+      pl.hidden=false;document.body.style.overflow='hidden';
+    });
+    if(window.matchMedia&&matchMedia('(hover:hover)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var timer,box=a.querySelector('.screen')||a;
+      a.addEventListener('mouseenter',function(){timer=setTimeout(function(){
+        if(box.querySelector('.hoverplay'))return;
+        var f=document.createElement('iframe');f.className='hoverplay';f.setAttribute('aria-hidden','true');f.tabIndex=-1;
+        f.allow='autoplay';f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+id+'&playsinline=1&start=20';
+        box.appendChild(f);},700)});
+      a.addEventListener('mouseleave',function(){clearTimeout(timer);var f=box.querySelector('.hoverplay');if(f)f.remove()});
+    }
+  });
+  // Views: the home page, or one section on its own (hash routes like #viral). Back button works.
+  var mainEl=document.querySelector('main'),crumb=document.getElementById('crumb'),crumbName=document.getElementById('crumb-name');
+  var homeOnly=[document.getElementById('top'),document.querySelector('.breaking'),document.querySelector('.jump')].filter(Boolean);
+  var blocks=[].slice.call(mainEl.children).filter(function(x){return x!==crumb});
+  var homeIds=['clips','fresh'];
+  function blockOf(el){while(el&&el.parentNode!==mainEl)el=el.parentNode;return el}
+  function route(){
+    var id=(location.hash||'').slice(1);
+    var target=id&&id!=='top'?document.getElementById(id):null;
+    var blk=target?blockOf(target):null;
+    var isHome=!blk;
+    homeOnly.forEach(function(x){x.classList.toggle('view-hidden',!isHome)});
+    blocks.forEach(function(b){
+      var bid=(b.id||(b.querySelector('section[id]')||{}).id);
+      b.classList.toggle('view-hidden',isHome?homeIds.indexOf(bid)<0:b!==blk);
+    });
+    crumb.hidden=isHome;
+    if(!isHome){var h=blk.querySelector('h2');crumbName.textContent=h?h.textContent:''}
+    document.documentElement.style.scrollBehavior='auto';
+    if(isHome||target===blk||(blk.querySelector('section')===target)){window.scrollTo(0,0)}else{target.scrollIntoView()}
+    document.documentElement.style.scrollBehavior='';
+    navLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+(isHome?'top':id))});
+    if(typeof onScroll==='function')onScroll();
+  }
+  window.addEventListener('hashchange',route);
+  // Phone swipes on the page: swipe left = back out to Home, swipe right = into the next section.
+  var order=['news','viral','videos','sports','careers','success','opinion','hotels','travel','culture','roads','shop','directory'];
+  var sx0=null,sy0=null,skip=false;
+  document.addEventListener('touchstart',function(e){var t=e.touches[0];sx0=t.clientX;sy0=t.clientY;
+    skip=!!(e.target.closest&&e.target.closest('.ribbon,.reels,.tbl,.mlinks,.player,.allgrid,input,select,textarea'))},{passive:true});
+  document.addEventListener('touchend',function(e){if(sx0===null||skip){sx0=null;return}
+    var t=e.changedTouches[0],dx=t.clientX-sx0,dy=t.clientY-sy0;sx0=null;
+    if(Math.abs(dx)<90||Math.abs(dy)>Math.abs(dx)*0.5)return;
+    var cur=(location.hash||'').slice(1),blk=cur&&cur!=='top'?blockOf(document.getElementById(cur)||mainEl):null;
+    var curSec=blk?(blk.id||(blk.querySelector('section[id]')||{}).id):null;
+    if(dx<0){if(curSec)location.hash='#top'}
+    else{var i=order.indexOf(curSec);location.hash='#'+order[(i+1)%order.length]}
+  },{passive:true});
+  // Navigation: highlight the section in view, show a floating Home button after scrolling
+  var th=document.getElementById('tohome');
+  function onScroll(){th.classList.toggle('off',window.scrollY<600&&!(location.hash&&location.hash!=='#top'))}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var navLinks=[].slice.call(document.querySelectorAll('.mlinks a, .allgrid .chips a'));
+  var ids=['top','fresh','clips','news','viral','videos','sports','careers','success','opinion','hotels','travel','season','culture','food','roads','shop','directory'];
+  var secs=ids.map(function(i){return document.getElementById(i)}).filter(Boolean);
+  function mark(id){navLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+id)});
+    var act=document.querySelector('.mlinks a.active');if(act&&act.scrollIntoView){var bar=act.parentNode;bar.scrollLeft=act.offsetLeft-40}}
+  if(false){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)mark(e.target.id)})},{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(x){io.observe(x)});
+  }
+  // Moving tiles: glide slowly on their own, and can be swiped (touch), dragged (mouse) or scrolled (trackpad)
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.ribbon .mrow').forEach(function(row){
+    var dir=row.classList.contains('rtl')?-1:1,pausedUntil=0,hover=false,pos=null,last=0;
+    var tr=row.querySelector('.mtrack'),n=tr.children.length/2,unit=0;
+    function fill(){unit=tr.scrollWidth/(tr.children.length/n);var guard=0;
+      while(tr.scrollWidth<row.clientWidth+unit*2.2&&guard++<10){for(var i=0;i<n;i++){var c=tr.children[i].cloneNode(true);c.setAttribute('aria-hidden','true');c.tabIndex=-1;tr.appendChild(c)}}}
+    fill();window.addEventListener('resize',fill);
+    function half(){return unit}
+    function wrap(){var h=half();if(h<=0)return;if(row.scrollLeft>=h)row.scrollLeft-=h;else if(row.scrollLeft<=0)row.scrollLeft+=h}
+    function hold(ms){pausedUntil=Date.now()+(ms||2500);pos=null}
+    requestAnimationFrame(function(){row.scrollLeft=dir<0?half()*1.5:half()*0.5});
+    row.addEventListener('mouseenter',function(){hover=true});
+    row.addEventListener('mouseleave',function(){hover=false;hold(800)});
+    row.addEventListener('touchstart',function(){hold(4000)},{passive:true});
+    row.addEventListener('touchmove',function(){hold(3000)},{passive:true});
+    row.addEventListener('wheel',function(){hold(2500)},{passive:true});
+    row.addEventListener('scroll',function(){if(Date.now()<pausedUntil||hover)wrap()},{passive:true});
+    // mouse drag
+    var down=false,sx=0,sl=0,moved=false;
+    row.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;hold(3000)});
+    window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;row.classList.add('dragging')}row.scrollLeft=sl-dx;wrap();hold(3000)});
+    window.addEventListener('pointerup',function(){if(!down)return;down=false;setTimeout(function(){row.classList.remove('dragging')},0)});
+    row.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+    if(reduce)return;
+    function tick(t){
+      var dt=last?Math.min(t-last,50):16;last=t;
+      if(!hover&&!down&&Date.now()>=pausedUntil){
+        if(pos===null)pos=row.scrollLeft;
+        pos+=dir*dt*0.025; // about 25 px per second
+        row.scrollLeft=pos;var h=half();
+        if(h>0){if(row.scrollLeft>=h){pos-=h;row.scrollLeft=pos}else if(row.scrollLeft<=0){pos+=h;row.scrollLeft=pos}}
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+  route();
+  var rl=document.getElementById('reels');
+  var tc=document.getElementById('tab-chitral'),ti=document.getElementById('tab-isb'),pc=document.getElementById('h-chitral'),pi=document.getElementById('h-isb');
+  function tab(c){tc.setAttribute('aria-selected',c?'true':'false');ti.setAttribute('aria-selected',c?'false':'true');pc.hidden=!c;pi.hidden=c}
+  tc.addEventListener('click',function(){tab(true)});ti.addEventListener('click',function(){tab(false)});
+  try{document.getElementById('today-date').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){}
+})();
+</script>
+</body>
+</html>
