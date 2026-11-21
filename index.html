@@ -1276,9 +1276,9 @@ footer p{margin:0;opacity:.8;font-size:15px}
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function renderArticle(slug){var a=ARTS[slug],el=document.getElementById('art-body');if(!a)return false;
     var h='<span class="acat">'+esc(a.cat)+'</span><h1>'+esc(a.title)+'</h1><div class="ameta">'+esc(a.date)+' · Chitral Pulse</div>';
-    if(a.img)h+='<figure class="afig"><img src="'+esc(a.img)+'" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>Photo: '+esc(a.imgcredit||a.source)+'</figcaption></figure>';
+    if(a.img)h+='<figure class="afig"><img src="'+esc(a.img)+'" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'+((a.imgcredit||a.source)?'<figcaption>Photo: '+esc(a.imgcredit||a.source)+'</figcaption>':'')+'</figure>';
     a.body.forEach(function(p){h+='<p>'+esc(p)+'</p>'});
-    h+='<div class="asrc">Source: <a href="'+esc(a.url)+'" target="_blank" rel="noopener">'+esc(a.source)+'</a></div>';
+    if(a.url)h+='<div class="asrc">Source: <a href="'+esc(a.url)+'" target="_blank" rel="noopener">'+esc(a.source)+'</a></div>';
     h+='<a class="aback" href="#top">← Back to Home</a>';
     el.innerHTML=h;document.title=a.title+' | Chitral Pulse';return true}
   function route(){
