@@ -169,6 +169,11 @@ body.menu-open .ribbon,body.menu-open .gallery{display:none}
 .art .asrc{margin-top:22px;font-size:13px;color:var(--muted)}
 .art .asrc a{color:var(--muted)}
 .art .aback{display:inline-block;margin-top:22px;font-weight:700;color:var(--apricot);text-decoration:none}
+.art .ashare{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.art .ashare span{margin-right:4px}
+.art .ashare a,.art .ashare button{font:600 13px inherit;font-family:inherit;padding:7px 12px;border-radius:999px;border:1px solid var(--line,rgba(127,127,127,.3));background:transparent;color:inherit;text-decoration:none;cursor:pointer}
+.art .ashare .fb{background:#1877f2;color:#fff;border-color:#1877f2}
+.art .ashare .wa{background:#25d366;color:#fff;border-color:#25d366}
 .readmore{font-weight:700;color:var(--apricot);text-decoration:none;font-size:15px}
 .story h3 a,.win h3 a{color:inherit;text-decoration:none}
 .story h3 a:hover,.win h3 a:hover{text-decoration:underline}
@@ -1286,6 +1291,8 @@ footer p{margin:0;opacity:.8;font-size:15px}
     if(a.img)h+='<figure class="afig"><img src="'+esc(a.img)+'" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'+((a.imgcredit||a.source)?'<figcaption>Photo: '+esc(a.imgcredit||a.source)+'</figcaption>':'')+'</figure>';
     a.body.forEach(function(p){h+='<p>'+esc(p)+'</p>'});
     if(a.url)h+='<div class="asrc">Source: <a href="'+esc(a.url)+'" target="_blank" rel="noopener">'+esc(a.source)+'</a></div>';
+    var su='https://izrlabs.github.io/chitral-pulse/a/'+encodeURIComponent(slug)+'/';
+    h+='<div class="ashare"><span>Share this story</span><a class="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(su)+'" target="_blank" rel="noopener">Facebook</a><a class="wa" href="https://wa.me/?text='+encodeURIComponent(a.title+' '+su)+'" target="_blank" rel="noopener">WhatsApp</a><button type="button" data-u="'+esc(su)+'" onclick="var b=this;(navigator.clipboard?navigator.clipboard.writeText(b.dataset.u):Promise.reject()).then(function(){b.textContent=\'Link copied\'},function(){prompt(\'Copy this link\',b.dataset.u)})">Copy link</button></div>';
     h+='<a class="aback" href="#top">← Back to Home</a>';
     el.innerHTML=h;document.title=a.title+' | Chitral Pulse';return true}
   function route(){
