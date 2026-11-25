@@ -179,8 +179,9 @@ body.menu-open .ribbon,body.menu-open .gallery{display:none}
 .story h3 a:hover,.win h3 a:hover{text-decoration:underline}
 .foodvids{margin-top:6px;align-items:start}
 .reel-read{margin:4px 0 18px;font-weight:700}.reel-read a{color:var(--apricot)}
-.vid.fbv .screen.fbembed{aspect-ratio:auto;height:560px;background:#000!important;display:flex;justify-content:center}
-.vid.fbv .screen.fbembed iframe{border:0;width:100%;max-width:320px;height:100%}
+.vid.fbv .yt{background:#1877f2}
+.vid.fbv .ptitle{position:absolute;left:14px;right:14px;bottom:12px;color:#fff;font:800 20px/1.2 var(--display);text-shadow:0 2px 8px rgba(0,0,0,.35);z-index:1}
+.vid.fbv .screen:has(.ptitle) .play{margin-bottom:24px}
 .allgrid{background:var(--ink);border-top:1px solid rgba(255,255,255,.12)}
 .chips a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--bg);font:600 14px var(--body);padding:9px 12px;border-radius:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);white-space:nowrap}
 .chips a::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--d)}
@@ -1062,7 +1063,7 @@ footer p{margin:0;opacity:.8;font-size:15px}
         <div class="screen" style="background:linear-gradient(135deg,#c2273b,#1877f2)"><span class="yt">Facebook</span><span class="play"></span></div>
         <div class="body"><h3>Shoshp</h3><p>A traditional Chitrali dish, made from scratch. Watch how it comes together.</p><div class="via">Video shared on Facebook</div></div>
       </a>
-      <a class="vid fbv" href="https://www.facebook.com/share/r/1FZpxswjF4/" data-fb="https://www.facebook.com/share/r/1FZpxswjF4/" target="_blank" rel="noopener">
+      <a class="vid fbv" href="https://www.facebook.com/share/r/1FZpxswjF4/" data-fb="https://www.facebook.com/share/r/1FZpxswjF4/" data-thumb="Chapoti" target="_blank" rel="noopener">
         <div class="screen" style="background:linear-gradient(135deg,#1877f2,#e07a2e)"><span class="yt">Facebook</span><span class="play"></span></div>
         <div class="body"><h3>Chitrali food, cooked the traditional way</h3><p>A mouth-watering reel of a Chitrali dish being made at home.</p><div class="via">Video shared on Facebook</div></div>
       </a>
@@ -1189,10 +1190,13 @@ footer p{margin:0;opacity:.8;font-size:15px}
   if(canEmbed){document.querySelectorAll('.fbframe').forEach(function(b){var w=Math.min(500,b.clientWidth||500);var f=document.createElement('iframe');f.src='https://www.facebook.com/plugins/page.php?href='+encodeURIComponent(b.dataset.fb)+'&tabs=timeline&width='+w+'&height=620&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false';f.loading='lazy';f.title='Chitral Football League on Facebook';f.allow='encrypted-media; picture-in-picture; web-share';b.innerHTML='';b.appendChild(f);});}
 
 
-  if(canEmbed){document.querySelectorAll('a.vid.fbv').forEach(function(a){var sc=a.querySelector('.screen');var f=document.createElement('iframe');
-    f.src='https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(a.dataset.fb)+'&show_text=false&width=320&height=560';f.loading='lazy';f.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';f.allowFullscreen=true;f.title='Facebook video';
-    sc.innerHTML='';sc.classList.add('fbembed');sc.appendChild(f);
-    a.addEventListener('click',function(e){if(e.target.closest('.screen'))e.preventDefault()});});}
+  // Facebook reels: Facebook often refuses to play shared reels inside other sites ("Video unavailable"),
+  // so every reel card shows a picture or title poster and opens the reel on Facebook.
+  document.querySelectorAll('a.vid.fbv').forEach(function(a){var sc=a.querySelector('.screen');if(!sc)return;
+    var t=a.dataset.thumb,src='';if(t){var fi=document.querySelector('.food img[alt="'+t+'"]');if(fi)src=fi.currentSrc||fi.src}
+    if(src){var im=document.createElement('img');im.className='vthumb';im.alt='';im.src=src;sc.insertBefore(im,sc.firstChild)}
+    else{var h=a.querySelector('h3');var p=document.createElement('span');p.className='ptitle';p.textContent=h?h.textContent:'';sc.appendChild(p)}
+    var v=a.querySelector('.via');if(v)v.textContent='▶ Watch on Facebook';});
   var pl=document.getElementById('player'),pf=document.getElementById('pframe'),pb=document.getElementById('pbox');
   function ytid(h){var m=/[?&]v=([\w-]{11})/.exec(h);return m?m[1]:null}
   function closeP(){pl.hidden=true;pf.innerHTML='';document.body.style.overflow=''}
