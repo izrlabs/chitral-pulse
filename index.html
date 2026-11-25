@@ -180,6 +180,13 @@ body.menu-open .ribbon,body.menu-open .gallery{display:none}
 .foodvids{margin-top:6px;align-items:start}
 .reel-read{margin:4px 0 18px;font-weight:700}.reel-read a{color:var(--apricot)}
 .vid.fbv .yt{background:#1877f2}
+#reelbox{position:fixed;inset:0;z-index:999;background:rgba(10,8,20,.85);display:grid;place-items:center;padding:16px}
+#reelbox[hidden]{display:none}
+#reelbox .rb-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%}
+#reelbox .rb-stage{width:min(340px,92vw);height:min(600px,78vh);background:#000;border-radius:14px;overflow:hidden}
+#reelbox iframe,#reelbox video{width:100%;height:100%;border:0;display:block;object-fit:contain}
+#reelbox .rb-x{position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;border:0;background:#fff;color:#111;font-size:22px;cursor:pointer;z-index:2}
+#reelbox .rb-fb{background:#1877f2;color:#fff;text-decoration:none;font-weight:700;padding:9px 16px;border-radius:999px}
 .vid.fbv .ptitle{position:absolute;left:14px;right:14px;bottom:12px;color:#fff;font:800 20px/1.2 var(--display);text-shadow:0 2px 8px rgba(0,0,0,.35);z-index:1}
 .vid.fbv .screen:has(.ptitle) .play{margin-bottom:24px}
 .allgrid{background:var(--ink);border-top:1px solid rgba(255,255,255,.12)}
@@ -1196,7 +1203,18 @@ footer p{margin:0;opacity:.8;font-size:15px}
     var t=a.dataset.thumb,src='';if(t){var fi=document.querySelector('.food img[alt="'+t+'"]');if(fi)src=fi.currentSrc||fi.src}
     if(src){var im=document.createElement('img');im.className='vthumb';im.alt='';im.src=src;sc.insertBefore(im,sc.firstChild)}
     else{var h=a.querySelector('h3');var p=document.createElement('span');p.className='ptitle';p.textContent=h?h.textContent:'';sc.appendChild(p)}
-    var v=a.querySelector('.via');if(v)v.textContent='▶ Watch on Facebook';});
+    var v=a.querySelector('.via');if(v)v.textContent='▶ Tap to play';});
+  // Tap a reel: play it in a pop-up player on the page (a video file if we host one, otherwise Facebook's player),
+  // with a button to open it on Facebook in case Facebook won't play it here.
+  var rm=document.createElement('div');rm.id='reelbox';rm.hidden=true;rm.innerHTML='<div class="rb-in"><button type="button" class="rb-x" aria-label="Close">×</button><div class="rb-stage"></div><a class="rb-fb" target="_blank" rel="noopener">Open on Facebook</a></div>';document.body.appendChild(rm);
+  function closeReel(){rm.hidden=true;rm.querySelector('.rb-stage').innerHTML=''}
+  rm.addEventListener('click',function(e){if(e.target===rm||e.target.closest('.rb-x'))closeReel()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!rm.hidden)closeReel()});
+  document.querySelectorAll('a.vid.fbv').forEach(function(a){a.addEventListener('click',function(e){
+    if(!canEmbed&&!a.dataset.mp4)return;e.preventDefault();var st=rm.querySelector('.rb-stage');
+    if(a.dataset.mp4){st.innerHTML='<video controls autoplay playsinline src="'+a.dataset.mp4+'"></video>'}
+    else{var u=a.dataset.reel||a.dataset.fb;st.innerHTML='<iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen title="Facebook reel" src="https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(u)+'&show_text=false&width=320&height=560"></iframe>'}
+    rm.querySelector('.rb-fb').href=a.href;rm.hidden=false;});});
   var pl=document.getElementById('player'),pf=document.getElementById('pframe'),pb=document.getElementById('pbox');
   function ytid(h){var m=/[?&]v=([\w-]{11})/.exec(h);return m?m[1]:null}
   function closeP(){pl.hidden=true;pf.innerHTML='';document.body.style.overflow=''}
